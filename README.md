@@ -65,3 +65,81 @@ player.health = 85;
 |   **File Extension**   | Uses `.js` or `.jsx`. | Uses `.ts` or `.tsx`. |
 
 The primary difference is that JavaScript is a dynamic language type when it comes to declaring variables (similar to Python), a variable can hold any type of value during runtime and not need any type annotations. Whereas TypeScript introduces static types (similar to Java), making variables able to hold only one or an union of fixed types. Note that TypeScript is a superset of JavaScript, meaning that all valid JavaScript code is also valid in TypeScript code, but with additional features designed to improve code readability, reliability and maintainability.
+
+### Adding Methods to Objects:
+
+Objects in JavaScript can contain not only data properties but also methods - function that belong to the object.
+
+#### Basic Syntax:
+
+Create a simple object with a method:
+
+JavaScript:
+
+```js
+const person = {
+    name: "Brad",
+    greet: function() {
+        return "Hello!";
+    }
+};
+
+person.greet(); // Returns "Hello!"
+```
+
+TypeScript:
+
+```ts
+// Creating a method to the object:
+const person: { name: string; greet(): string } = {
+    name: "Brad",
+    greet: function(): string { return "Hello!"; }
+};
+
+// Calling the method:
+console.log(person.greet())  // Returns "Hello!"
+```
+
+You can also use shorthand syntax introduced in ES6:
+
+JavaScript:
+
+```js
+const person = {
+    name: "John",
+    greet() {
+        return "Hello!";
+    }
+};
+```
+
+TypeScript:
+
+```ts
+const person: { name: string; greet(): string } = {
+    name: "John",
+    greet(): string {
+        return "Hello!";
+    }
+};
+```
+
+#### Example of Usage:
+
+```js
+// The calculator object already exists
+const calculator = {
+  //  The add method would return the sum of two numbers
+  add(n1, n2) {
+    return n1 + n2;
+  }
+};
+
+console.log(calculator.add(2, 5));
+```
+
+##### Result:
+
+```
+7
+```
