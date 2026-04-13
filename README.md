@@ -124,7 +124,7 @@ const person: { name: string; greet(): string } = {
 };
 ```
 
-#### Example of Usage:
+#### Example of Usage (JS):
 
 ```js
 // The calculator object already exists
@@ -142,4 +142,79 @@ console.log(calculator.add(2, 5));
 
 ```
 7
+```
+
+### Understanding the 'this' Keyword:
+
+The `this` keyword is JavaScript refers to the *object that is currently executing the code*. It allows you to access properties and methods of the current object.
+
+#### Basic Syntax:
+
+Let's start with a basic object:
+
+JavaScript:
+
+```js
+let person = {
+  name: "John",
+  age: 30,
+  greet: function() {
+    console.log("Hello, my name is " + this.name);
+  }
+};
+```
+
+TypeScript:
+
+```ts
+let person: { name: string; age: number; greet(): void; } = {
+  name: "John",
+  age: 30,
+  greet: function() {
+    console.log("Hello, my name is " + this.name);
+  }
+};
+```
+
+Now if we call the `greet` method in either languages:
+
+```js
+person.greet();
+```
+
+The Output will be:
+
+```
+Hello, my name is John
+```
+
+#### Breakdown:
+
+For the function call to execute correctly, the object was called in the `this.name` inside the `greet` method, which referred to the `name` property of the `person` object.
+
+
+#### Example of Usage (JS):
+
+```js
+const player = {
+    name: "Knight",
+    health: 100,
+    
+    takeDamage: function(damage) {
+        this.health -= damage;
+    },
+    
+    getStatus: function() { return `${this.name} has ${this.health} health`; }
+};
+
+
+// Test
+player.takeDamage(30);
+console.log(player.getStatus()); // Should output: "Knight has 70 health"
+```
+
+##### Result:
+
+```
+Knight has 70 health
 ```
