@@ -218,3 +218,67 @@ console.log(player.getStatus()); // Should output: "Knight has 70 health"
 ```
 Knight has 70 health
 ```
+
+### Constructor Functions:
+
+Constructor functions are special functions in all of object oriented programming that allows you to instantiate multiple objects with the same structure and behavior.
+
+#### Basic Syntax:
+
+Define a constructor function for a `Person` (JS ONLY):
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return "Hello, my name is " + this.name;
+  };
+};
+
+// Creating a new Person object using the constructor:
+const john = new Person("John", 30);
+const tyler = new Person("Tyler", 35);
+```
+
+Here is a preview of what this will look like inside the object:
+
+```js
+// john object contains:
+{
+  name: "John",
+  age: 30,
+  greet: function() { return "Hello, my name is John"; }
+}
+```
+
+#### Accessing Properties and call methods:
+
+```js
+console.log(john.name); // Outputs: John
+console.log(john.greet()); // Outputs: Hello, my name is John
+```
+
+#### Why does it only work in JS?
+
+In TypeScript, the use of the `this` keyword is only allowed inside classes, however, JavaScript would allow this kind of constructor outside of a class, but the constructor function may be converted to a class declaration, due to the use of the `new` keyword (only in OOP).
+
+#### Example of Usage (JS ONLY):
+
+```js
+function Book(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.getSummary = function() { return `${this.title} was written by ${this.author} and has ${this.pages} pages`; }
+};
+
+const book = new Book("Harry Potter", "Rowling", 500);
+console.log(book.getSummary());
+```
+
+##### Result:
+
+```
+Harry Potter was written by Rowling and has 500 pages
+```
