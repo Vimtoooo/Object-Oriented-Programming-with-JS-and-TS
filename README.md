@@ -221,7 +221,7 @@ Knight has 70 health
 
 ### Constructor Functions:
 
-Constructor functions are special functions in all of object oriented programming that allows you to instantiate multiple objects with the same structure and behavior.
+Constructor functions are special functions in all of object oriented programming and also during normal object declarations that allows you to instantiate multiple objects with the same structure and behavior.
 
 #### Basic Syntax:
 
@@ -281,4 +281,60 @@ console.log(book.getSummary());
 
 ```
 Harry Potter was written by Rowling and has 500 pages
+```
+
+### The 'new' Keyword:
+
+The `new` keyword in JavaScript is used to create instances of constructor functions, with act as templates for creating objects:
+
+#### Basic Syntax (JS ONLY):
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return "Hello, my name is " + this.name;
+  };
+}
+```
+
+Use the `new` keyword to create an instance:
+
+```js
+const john = new Person("John", 30);
+```
+
+After executing the above code, the `john` variable will become an object with properties and a method:
+
+* `john.name` is "John"
+* `john.age` is 30
+* `john.greet()` return "Hello, my name is John"
+
+Without the `new` keyword, `this` would refer to the global object (or undefined in strict mode), not the new instance.
+
+#### Example of Usage (JS ONLY):
+
+```js
+function Car(name, year) {
+    this.name = name;
+    this.year = year;
+    
+    this.getDescription = function() {
+        return "This is a " + this.name + " from " + this.year;
+    };
+};
+
+// Create a new car object using the new keyword, pass "Honda" as the name and 2018 as the year
+const myCar = new Car("Honda", 2018);
+
+// Call the getDescription method on your car object and print the result to the console
+const result = myCar.getDescription();
+console.log(result);
+```
+
+##### Result:
+
+```
+This is a Honda from 2018
 ```
