@@ -338,3 +338,216 @@ console.log(result);
 ```
 This is a Honda from 2018
 ```
+
+### Recap - Objects & the 'this' Keyword:
+
+Here is a summary of this particular section:
+
+#### Objects:
+
+Objects are special collections that relate to key-value pairs for data storing.
+
+JavaScript:
+
+```js
+// Object as a simple data container
+const player = {
+    name: "Alex",
+    health: 100,
+    level: 2,
+    inventory: ["sword", "potion"]
+};
+
+// Accessing data
+console.log(player.name);          // "Alex"
+console.log(player.health);        // 100
+console.log(player.inventory[0]);  // "sword" - access array element
+
+// Updating data
+player.health = 85;
+```
+
+TypeScript:
+
+```ts
+// Object as a simple data container
+const player: { name: string; health: number; level: number; inventory: string[] }  = {
+    name: "Alex",
+    health: 100,
+    level: 2,
+    inventory: ["sword", "potion"]
+};
+
+// Accessing data
+console.log(player.name);          // "Alex"
+console.log(player.health);        // 100
+console.log(player.inventory[0]);  // "sword" - access array element
+
+// Updating data
+player.health = 85;
+```
+
+#### Adding Methods to Objects:
+
+##### Traditional Syntax:
+
+JavaScript:
+
+```js
+const person = {
+    name: "Brad",
+    greet: function() {
+        return "Hello!";
+    }
+};
+
+person.greet(); // Returns "Hello!"
+```
+
+TypeScript:
+
+```ts
+const person: { name: string; greet(): string; } = {
+    name: "Brad",
+    greet: function() {
+        return "Hello!";
+    }
+};
+
+person.greet(); // Returns "Hello!"
+```
+
+##### Shorthand Syntax:
+
+JavaScript:
+
+```js
+const person = {
+    name: "John",
+    greet() {
+        return "Hello!";
+    }
+};
+```
+
+TypeScript:
+
+```ts
+const person: { name: string; greet(): string } = {
+    name: "John",
+    greet(): string {
+        return "Hello!";
+    }
+};
+```
+
+#### The 'this' Keyword withing Objects:
+
+The `this` keyword is used to refer to the object which is being used to retrieve its unique data.
+
+JavaScript:
+
+```js
+let person = {
+  name: "John",
+  age: 30,
+  greet: function() {
+    console.log("Hello, my name is " + this.name);
+  }
+};
+
+person.greet()  // Output: "Hello, my name is John"
+```
+
+TypeScript:
+
+```ts
+let person: { name: string; age: number; greet(): void; } = {
+  name: "John",
+  age: 30,
+  greet: function() {
+    console.log("Hello, my name is " + this.name);
+  }
+};
+
+person.greet()  // Output: "Hello, my name is John"
+```
+
+#### Constructor Functions (JS ONLY):
+
+Constructor functions are unique for initializing objects within object oriented programming, but for this case, we will create an instance which would not come from a traditional class:
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return "Hello, my name is " + this.name;
+  };
+};
+
+// Creating a new Person object using the constructor:
+const john = new Person("John", 30);
+const tyler = new Person("Tyler", 35);
+```
+
+Here is a preview of what this will look like inside the object:
+
+```js
+// john object contains:
+{
+  name: "John",
+  age: 30,
+  greet: function() { return "Hello, my name is John"; }
+}
+```
+
+#### The 'new' Keyword (JS ONLY):
+
+The `new` keyword in JavaScript is used to create instances of constructor functions, with act as templates for creating objects. We will still be referring to the constructor functions that are used outside of classes (which only works in JavaScript):
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return "Hello, my name is " + this.name;
+  };
+}
+
+// Use the `new` keyword to create an instance:
+const john = new Person("John", 30);
+
+john.name     // Returns "John"
+john.greet()  // "Hello, my name is John"
+```
+
+#### Example of a Program (JS ONLY):
+
+```js
+function Thermostat(room) {
+    this.room = room;
+    this.temperature = 22;
+    this.isOn = true;
+    this.increaseTemp = function() { this.temperature++ }
+    this.decreaseTemp = function() { this.temperature--; };
+    this.getStatus = function() { return `${this.room} thermostat: ${this.temperature}°C`; };
+};
+
+const livingRoom = new Thermostat("Living Room");
+livingRoom.increaseTemp();
+livingRoom.increaseTemp();
+console.log(livingRoom.getStatus()); // Should print: "Living Room thermostat: 24°C"
+
+const bedroom = new Thermostat("Bedroom");
+bedroom.decreaseTemp();
+bedroom.decreaseTemp();
+console.log(bedroom.getStatus()); // Should print: "Bedroom thermostat: 20°C"
+```
+
+##### Result:
+
+```
+Living Room thermostat: 24°C
+Bedroom thermostat: 20°C
+```
