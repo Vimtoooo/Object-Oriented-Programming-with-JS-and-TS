@@ -551,3 +551,82 @@ console.log(bedroom.getStatus()); // Should print: "Bedroom thermostat: 20°C"
 Living Room thermostat: 24°C
 Bedroom thermostat: 20°C
 ```
+
+## Organizing Code:
+
+### What are Modules?
+
+When your JavaScript code grows large and complex, it becomes difficult to manage everything in one file. The solution is **modules**: splitting your code into separate, organized files.
+
+A **module** is a JavaScript file that contains related code. Each module handles one specific job, making your application easier to understand and maintain.
+
+A JavaScript module is a regular `.js` file that can **export code** (variables, functions, classes) so other files can **import and use it**.
+
+#### Basic Syntax (JS ONLY):
+
+This is a messy file (everything within one file):
+
+```js
+// file: messy-app.js
+let user = "John";
+let score = 0;
+
+function login() {
+  console.log("Welcome " + user);
+}
+
+function addPoints(points) {
+  score += points;
+}
+```
+
+Now, this represents two separate files (two files organized with modules):
+
+```js
+// file: user-module.js
+let user = "John";
+function login() {
+  console.log("Welcome " + user);
+}
+// file: game-module.js
+let score = 0;
+function addPoints(points) {
+  score += points;
+}
+```
+
+#### Breakdown:
+
+* **user-module.js**: It handles user authentication and user-related data and contains the username and login functionality.
+* **game-module.js**: It manages game scoring and points system and tracks the score and handles point calculations.
+
+If you want to use specific classes, functions or variables from an external module, you would need to **export what you want to use outside of that module and import it in the file that you wish to utilize it**. Note that we will learn about importing and exporting later on!
+
+#### Example of Usage:
+
+game-module.js:
+
+```js
+let score = 0;
+
+export function addPoints(points) {
+  score += points;
+  console.log(`Score increased! Current score: ${score}`)
+}
+```4
+
+user-module.js:
+
+```js
+import { addPoints } from './game-module.js';
+let user = "John";
+
+// Call the addPoints function with the value 10
+addPoints(10);
+```
+
+##### Result:
+
+```
+Score increased! Current score: 10
+```
