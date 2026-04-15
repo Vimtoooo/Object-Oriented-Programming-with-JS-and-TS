@@ -630,3 +630,133 @@ addPoints(10);
 ```
 Score increased! Current score: 10
 ```
+
+### Exporting with 'export':
+
+When organizing your JavaScript or TypeScript code across multiple files, the `export` keyword allows you to expose functions, variables, and other code so they can be used in other files.
+
+#### Basic Syntax:
+
+Let's create two simple functions that we want to export:
+
+##### ES Module Traditional Syntax:
+
+TypeScript:
+
+```ts
+// File: math-utils.js
+// A function that adds two numbers
+function add(a: number, b: number): number {
+    return a + b;
+}
+// A function that multiplies two numbers
+function multiply(a: number, b: number): number {
+    return a * b;
+}
+// Export the functions so other files can use them
+export { add, multiply };
+```
+
+JavaScript:
+
+```js
+// File: math-utils.js
+// A function that adds two numbers
+function add(a, b) {
+    return a + b;
+}
+// A function that multiplies two numbers
+function multiply(a, b) {
+    return a * b;
+}
+// Export the functions so other files can use them
+export { add, multiply };
+```
+
+##### ES Module Inline Syntax:
+
+TypeScript:
+
+```ts
+// Export functions directly
+export function add(a: number, b: number): number {
+    return a + b;
+}
+export function multiply(a: number, b: number): number {
+    return a * b;
+}
+```
+
+JavaScript:
+
+```js
+export function add(a, b) {
+    return a + b;
+}
+export function multiply(a, b) {
+    return a * b;
+}
+```
+
+#### CommonJS Traditional Export Syntax:
+
+JavaScript:
+
+```js
+// Exporting functions
+function add(a, b) {
+    return a + b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+// Export as an object
+module.exports = {
+    add,
+    multiply
+};
+
+// Or assign them in one line:
+module.exports = { add, multiply }
+```
+
+##### CommonJS Inline Syntax:
+
+JavaScript:
+
+```js
+// Assign directly to module.exports.functionName
+module.exports.add = function(a, b) {
+    return a + b;
+};
+
+module.exports.multiply = function(a, b) {
+    return a * b;
+};
+```
+
+#### Comparison:
+
+|             **Syntax**            |    **Type**    |     **Inline?**      |
+| :-------------------------------: | -------------- | -------------------- |
+|      `export function add()`      |   ES Modules   |         Yes          |
+|     `module.exports = { add }`    |    CommonJs    |     Semi-inline      |
+| `module.exports.add = function()` |    CommonJS    |         Yes          |
+
+#### Key Differences:
+
+CommonJS doesn't have a true "inline export" keyword like ES modules. You either assign to `module.exports` as an object, or assign individual properties to it. ES modules' `export function` is cleaner and more readable.
+
+It is key to note that you can configure the syntax of how TypeScript syntax should be treated via `tsconfig.json` and `package.json` files. For traditional and modern uses, use **ES Module (ESM)** written inside the `package.json` file as `"type": "module"`. In the other hand, for **CommonJS** syntax, replace it to `"type": "commonjs"`. To remove strict syntaxes, inside `tsconfig.json`, set:
+
+```json
+{
+  "compilerOptions": {
+    "verbatimModuleSyntax": false,  // False will disable strictness from your TypeScript code...
+    // ...existing code...
+  }
+}
+```
+

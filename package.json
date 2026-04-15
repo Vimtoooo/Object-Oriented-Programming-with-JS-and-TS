@@ -1,0 +1,21 @@
+{
+  "name": "objectorientedprogramming",
+  "version": "1.0.0",
+  "description": "This documentation covers most OOP concepts when it comes to programming languages like JavaScript and TypeScript. Feel free to read my notes!",
+  "homepage": "https://github.com/Vimtoooo/Object-Oriented-Programming-with-JS-and-TS#readme",
+  "bugs": {
+    "url": "https://github.com/Vimtoooo/Object-Oriented-Programming-with-JS-and-TS/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vimtoooo/Object-Oriented-Programming-with-JS-and-TS.git"
+  },
+  "license": "ISC",
+  "author": "Vimtoooo",
+  "type": "module",
+  "main": "Main.js",
+  "types": "./Main.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

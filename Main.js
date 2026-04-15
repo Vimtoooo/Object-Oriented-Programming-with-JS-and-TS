@@ -28,14 +28,35 @@
 // };
 
 // Creating a Thermostat object:
-function Thermostat(room) {
-    this.room = room;
-    this.temperature = 22;
-    this.isOn = true;
-    this.increaseTemp = function() { this.temperature++ }
-    this.decreaseTemp = function() { this.temperature--; };
-    this.getStatus = function() { return `${this.room} thermostat: ${this.temperature}°C`; };
-};
+// function Thermostat(room) {
+//     this.room = room;
+//     this.temperature = 22;
+//     this.isOn = true;
+//     this.increaseTemp = function() { this.temperature++ }
+//     this.decreaseTemp = function() { this.temperature--; };
+//     this.getStatus = function() { return `${this.room} thermostat: ${this.temperature}°C`; };
+// };
 
-livingRoom = new Thermostat("Living Room");
-livingRoom.increaseTemp();
+// livingRoom = new Thermostat("Living Room");
+// livingRoom.increaseTemp();
+
+// File: math-utils.js
+// A function that adds two numbers
+// function add(a, b) {
+//     return a + b;
+// }
+// // A function that multiplies two numbers
+// function multiply(a, b) {
+//     return a * b;
+// }
+// // Export the functions so other files can use them
+// export { add, multiply };
+
+// Inline Export Syntax:
+// Export functions directly
+export function add(a, b) {
+    return a + b;
+}
+export function multiply(a, b) {
+    return a * b;
+}
