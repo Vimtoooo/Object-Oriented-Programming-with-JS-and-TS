@@ -760,3 +760,71 @@ It is key to note that you can configure the syntax of how TypeScript syntax sho
 }
 ```
 
+### Purpose of Different Module Syntaxes in TypeScript:
+
+The reason that TypeScript offers a variety of syntaxes is to:
+
+* **Support Legacy Code**: Work with existing CommonJS projects.
+* **Enable Modern Development**: Write ES module syntax while targeting any environment.
+* **Compile to Target**: Single source can compile to CommonJS, ESM, or others via `tsconfig.json`..
+
+#### Configurations Example in tsconfig.json:
+
+```json
+{
+  "compilerOptions": {
+    "module": "esnext",           // Compile to ES modules
+    "target": "ES2020",           // Modern JavaScript
+    "verbatimModuleSyntax": true  // Enforce correct syntax
+  },
+  "type": "module"  // In package.json - tells Node.js this is ESM
+}
+```
+
+#### ES Modules (ESM) — Modern Standard:
+
+```ts
+export function add(a: number, b: number): number {
+    return a + b;
+}
+
+import { add } from './math-utils';
+```
+
+##### Purpose:
+
+- Official JavaScript standard (ES2015+).
+- Supported in modern browsers and recent Node.js versions.
+- Static imports enable tree-shaking and optimization.
+- Cleaner, more readable syntax.
+
+#### CommonJS (CJS) — Legacy Node.js Standard:
+
+```js
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = { add };
+
+const { add } = require('./math-utils');
+```
+
+##### Purpose:
+
+- Original Node.js module system (pre-ES Modules).
+- Still used in many existing projects.
+- Dynamic imports allow runtime flexibility.
+- Better for older Node.js environments.
+
+#### Summary:
+
+|      **Aspect**      |           **ES Modules**           |           **CommonJS**           |
+| :------------------: | ---------------------------------- | -------------------------------- |
+|      **Syntax**      |          `import`/`export`         |    `require`/`module.exports`    |
+|     **Loading**      |        Static (compile-time)       |         Dynamic (runtime)        |
+|   **Tree-shaking**   |             Supported              |           Not Supported          |
+|     **Browser**      |               Native               |           Needs Bundler          |
+|     **Use Case**     |           Modern Projects          |       Legacy/Compatibility       |
+
+Use **ES Modules** for new projects, TypeScript makes it easy to target whatever environment you need without changing your source code.
