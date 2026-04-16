@@ -828,3 +828,79 @@ const { add } = require('./math-utils');
 |     **Use Case**     |           Modern Projects          |       Legacy/Compatibility       |
 
 Use **ES Modules** for new projects, TypeScript makes it easy to target whatever environment you need without changing your source code.
+
+### Importing with 'import':
+
+After exporting functionality from a module, we need to import it to use it in another file. The `import` statement allows us to bring in exported values from other modules.
+
+#### Basic Syntax (JS ONLY):
+
+Exporting the function:
+
+```js
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+};
+
+export { greet };
+```
+
+Import a named export:
+
+```js
+// Importing a specific function from a module
+import { greet } from './greeting.js';
+
+// Now we can use the greet function
+greet('John'); // Outputs: Hello, John!
+```
+
+##### Importing Multiple named Exports:
+
+```js
+// Importing multiple exports
+import { greet, farewell } from './greeting.js';
+
+greet('John');      // Outputs: Hello, John!
+farewell('John');   // Outputs: Goodbye, John!
+```
+
+##### Import a Default Export:
+
+```js
+// Importing a default export (no curly braces needed)
+// Use this when the other file has: export default functionName
+import Person from './person.js';
+
+// Create a new Person
+const john = new Person('John');
+```
+
+#### Example of Usage (JS ONLY):
+
+validation-utils.js:
+
+```js
+export function validateEmail(email) {
+    return email.includes('@') && email.includes('.');
+}
+
+export function validatePassword(password) {
+    return password.length >= 8;
+}
+```
+
+main.js:
+
+```js
+import { validateEmail } from './validation-utils.js';
+
+const result = validateEmail("user@example.com");
+console.log(result);
+```
+
+##### Result:
+
+```
+true
+```
