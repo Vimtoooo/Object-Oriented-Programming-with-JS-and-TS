@@ -37,8 +37,15 @@
 // export function multiply(a: number, b: number): number {
 //     return a * b;
 // }
-function greet() {
-    console.log("Hello there!");
-}
+// function greet() {
+//     console.log("Hello there!");
+// }
 
-export { greet };
+// export { greet };
+
+// import user from './Test.js';
+
+// console.log(user.name);
+
+import { add as sum, subtract } from './Test.js';
+

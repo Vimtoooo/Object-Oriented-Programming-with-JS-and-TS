@@ -909,3 +909,131 @@ true
 
 In JavaScript modules, you have two main ways to export your code: name exports and default exports.
 
+#### Basic Syntax in ESM (JS ONLY):
+
+##### Named Exports:
+
+Named exports allow you to export different values individually from a module:
+
+```js
+// math.js
+export function add(a, b) {
+    return a + b;
+}
+export function subtract(a, b) {
+    return a - b;
+}
+```
+
+When importing named exports, you must use the exact same names within curly braces:
+
+```js
+// app.js
+import { add, subtract } from './math.js';
+
+console.log(add(5, 3));      // 8
+console.log(subtract(10, 4)); // 6
+```
+
+###### Renaming Named Exports:
+
+If you need to rename a named import, use the `as` keyword to create an alias:
+
+```js
+// app.js
+import { add as sum, subtract as minus } from './math.js';
+
+console.log(sum(5, 3));   // 8
+console.log(minus(10, 4)); // 6
+```
+
+##### Default Exports:
+
+Default exports allow you to export a single main value form a module:
+
+```js
+// user.js
+const user = {
+  name: 'John',
+  age: 30
+};
+
+export default user;
+```
+
+And when importing a default export, you can use any name you want without curly braces:
+
+```js
+// app.js
+import person from './user.js';
+
+console.log(person.name); // 'John'
+```
+
+#### When to use which?
+
+Use **named exports** when a module provides related utilities (e.g., a collection of helper functions). In the other hand, use **default export** when a module has one primary purpose or main value value (e.g., a class, a component, or a configuration object).
+
+#### Combining Export Types:
+
+You can combine both types of exports in a single module:
+
+```js
+// vehicle.js
+export const wheels = 4;
+export const doors = 4;
+
+const car = {
+  brand: 'Toyota',
+  model: 'Corolla'
+};
+
+export default car;
+```
+
+And import them together:
+
+```js
+// app.js
+import myCar, { wheels, doors } from './vehicle.js';
+
+console.log(myCar.brand);  // 'Toyota'
+console.log(wheels);       // 4
+```
+
+#### Example of Usage:
+
+calculator.js
+
+```js
+function calculate(a, b, operation) {
+    if (operation === '+') return a + b;
+    if (operation === '-') return a - b;
+}
+
+// Export square function as named here
+export function square(x) {
+    return x * x;
+};
+
+// Export calculate function as default here
+export default calculate;
+```
+
+main.js
+
+```js
+// Import both functions here from calculator.js
+import calculate, { square } from './calculator.js';
+
+// Test
+console.log(calculate(10, 5, '+')); // Should output 15
+console.log(square(4));             // Should output 16
+```
+
+##### Result:
+
+```
+15
+16
+```

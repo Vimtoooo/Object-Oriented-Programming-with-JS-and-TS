@@ -1,3 +1,14 @@
-import { greet } from "./Main";
+// // user.js
+// const user = {
+//     name: 'John',
+//     age: 30
+// };
 
-console.log("hi")
+// export default user;
+
+export function add(a, b) {
+    return a + b;
+}
+export function subtract(a, b) {
+    return a - b;
+}
