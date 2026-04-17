@@ -904,3 +904,8 @@ console.log(result);
 ```
 true
 ```
+
+### Default Vs. Named Exports:
+
+In JavaScript modules, you have two main ways to export your code: name exports and default exports.
+
