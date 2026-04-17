@@ -44,6 +44,35 @@
 //     return a * b;
 // }
 
-export function greet(): void {
-    console.log("Hello there!");
-}
+class Person {
+
+    public name: string;
+    public age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    };
+};
+
+// const me = new Person("Blue", 21);
+// console.log(me.name)
+
+// Create a class named Car
+class Car {
+
+    make: string;
+    model: string;
+
+    // Add a constructor that takes two parameters: make and model
+    constructor(make: string, model: string) {
+
+        // Set these values (make and model) as properties of the object
+        this.make = make;
+        this.model = model;
+    };
+};
+
+const car = new Car("Honda", "Civic");
+console.log(car.make)
+console.log(car.model)

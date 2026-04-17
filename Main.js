@@ -37,15 +37,14 @@
 // export function multiply(a: number, b: number): number {
 //     return a * b;
 // }
-// function greet() {
-//     console.log("Hello there!");
-// }
-
-// export { greet };
-
-// import user from './Test.js';
-
-// console.log(user.name);
-
-import { add as sum, subtract } from './Test.js';
-
+// var Person = /** @class */ (function () {
+//     function Person(name, age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//     ;
+//     return Person;
+// }());
+// ;
+// var me = new Person("Blue", 21);
+// console.log(me.name);

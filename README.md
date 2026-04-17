@@ -1037,3 +1037,117 @@ console.log(square(4));             // Should output 16
 15
 16
 ```
+
+## Classes & Objects:
+
+### What is a Class?
+
+A class in JavaScript is a **blueprint for creating objects with pre-defined properties and methods**. Classes were introduced in ES6 and provide a cleaner, more intuitive syntax for creating objects and dealing with inheritance.
+
+#### Basic Syntax:
+
+Define a simple class called `Person`:
+
+TypeScript:
+
+```ts
+class Person {
+
+    public name: string;
+    public age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    };
+};
+
+const me = new Person("Blue", 21);
+console.log(me.name)  // "Blue"
+```
+
+JavaScript:
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  };
+};
+
+const me = new Person("Blue", 21);
+console.log(me.name)  // "Blue"
+```
+
+##### The Constructor method:
+
+The `constructor()` method is a special method that gets called when an object is created from the class.
+
+#### Create an Instance of the Class:
+
+```js
+const john = new Person("John", 25);
+```
+
+#### Access Properties of the Created Object:
+
+```js
+console.log(john.name); // Output: "John"
+console.log(john.age);  // Output: 25
+```
+
+#### Example of Usage:
+
+TypeScript:
+
+```ts
+class Car {
+
+    // Apply the properties with their encapsulations and types
+    public make: string;
+    public model: string;
+
+    // Add a constructor that takes two parameters: make and model
+    constructor(make: string, model: string) {
+
+        // Set these values (make and model) as properties of the object
+        this.make = make;
+        this.model = model;
+    };
+};
+
+const car = new Car("Honda", "Civic");
+console.log(car.make)
+console.log(car.model)
+```
+
+JavaScript:
+
+```js
+// Create a class named Car
+class Car {
+
+    // JavaScript does not need to specify properties, even when calling a constructor with this.propertyName!
+
+    // Add a constructor that takes two parameters: make and model
+    constructor(make, model) {
+
+        // Set these values (make and model) as properties of the object
+        this.make = make;
+        this.model = model;
+    };
+};
+
+
+const car = new Car("Honda", "Civic");
+console.log(car.make)
+console.log(car.model)
+```
+
+##### Result:
+
+```
+Honda
+Civic
+```
