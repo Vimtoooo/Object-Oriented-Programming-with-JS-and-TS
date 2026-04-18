@@ -1151,3 +1151,75 @@ console.log(car.model)
 Honda
 Civic
 ```
+
+### Creating Instances:
+
+After defining a class, you can create objects based on that class using the `new` keyword. These objects are called **instances**.
+
+#### Basic Syntax (JS ONLY):
+
+Let's say we have a simple `person` class:
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  greet() {
+    return `Hello, my name is ${this.name}`;
+  }
+}
+```
+
+Create an instance of the `Person` class:
+
+```js
+const john = new Person("John", 30);
+```
+
+After executing the above code, `john` will become an instance of the `Person` class with the following attributes:
+
+* `name` property set to "John"
+* `age` property set to 30
+
+You can create multiple instances from the same class:
+
+```js
+const sarah = new Person("Sarah", 25);
+console.log(sarah.name); // Outputs: Sarah
+```
+
+#### Example of Usage (JS ONLY):
+
+student.js:
+
+```js
+export class Student {
+  constructor(name, grade) {
+    this.name = name;
+    this.grade = grade;
+  }
+}
+```
+
+main.js:
+
+```js
+import { Student } from './student.js';
+
+const student1 = new Student("Sarah", 85);
+const student2 = new Student("Mike", 92);
+
+// Test code - don't modify
+console.log(student1.name);  // Should output "Sarah"
+console.log(student2.grade); // Should output 92
+```
+
+##### Result:
+
+```
+Sarah
+92
+```
