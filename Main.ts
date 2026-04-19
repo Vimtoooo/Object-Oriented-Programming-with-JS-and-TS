@@ -103,18 +103,61 @@
 // console.log(myBook.getInfo());
 
 // Create the VendingMachine class and export it
-export class VendingMachine {
-    // Properties:
-    public location: string;
-    public drinks: number;
+// export class VendingMachine {
+//     // Properties:
+//     public location: string;
+//     public drinks: number;
 
-    // Add a constructor that takes location (string) and drinks (number) parameters
-    constructor(location: string, drinks: number) {
-        this.location = location;
-        this.drinks = drinks;
-    };
-    // Add getStatus() method that returns a string like "Cafe machine: 15 drinks left"
-    getStatus() {
-        return `Cafe machine: ${this.drinks} drinks left`;
-    };
-};
+//     // Add a constructor that takes location (string) and drinks (number) parameters
+//     constructor(location: string, drinks: number) {
+//         this.location = location;
+//         this.drinks = drinks;
+//     };
+//     // Add getStatus() method that returns a string like "Cafe machine: 15 drinks left"
+//     getStatus() {
+//         return `Cafe machine: ${this.drinks} drinks left`;
+//     };
+// };
+
+// class BankAccount {
+//     public owner: string;
+//     private balance: number;
+
+//   constructor(owner: string, balance: number = 0) {
+//     this.owner = owner;
+//     this.balance = balance;
+//   }
+  
+//   deposit(amount: number) {
+//     this.balance += amount;
+//   }
+
+//   withdraw(amount: number) {
+//     if (amount <= this.balance) {
+//       this.balance -= amount;
+//     }
+//   }
+  
+//   transfer(amount: number, toAccount: BankAccount) {
+//     if (amount <= this.balance) {
+//       this.balance -= amount;
+//       toAccount.balance += amount;
+//     }
+//   }
+// }
+
+
+export class Thermostat {
+  public room: string;
+  public currentTemp: number;
+
+  constructor(room: string, currentTemp: number) {
+    this.room = room;
+    this.currentTemp = currentTemp;
+  }
+  
+  // Add the increaseTemp() method that increases temperature by 1 degree
+  increaseTemp() { this.currentTemp++; }
+  // Add the decreaseTemp() method that decreases temperature by 1 degree
+  decreaseTemp() { this.currentTemp--; }
+}

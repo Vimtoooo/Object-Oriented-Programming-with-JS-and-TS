@@ -1421,3 +1421,181 @@ console.log(cafeMachine.getStatus()); // "Cafe machine: 20 drinks left"
 ```
 Cafe machine: 20 drinks left
 ```
+
+## Methods & Managing State:
+
+### Methods that modify State:
+
+Methods in JavaScript classes can modify the state (properties) of an object. This is one of the key features of object-oriented programming.
+
+#### Basic Syntax:
+
+Let's create a simple `BankAccount` class:
+
+TypeScript:
+
+```ts
+class BankAccount {
+    public owner: string;
+    private balance: number;
+
+  constructor(owner: string, balance: number = 0) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+  
+  deposit(amount: number) {
+    this.balance += amount;
+  }
+}
+```
+
+JavaScript:
+
+```js
+class BankAccount {
+  constructor(owner, balance = 0) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+  
+  deposit(amount) {
+    this.balance += amount;
+  }
+}
+```
+
+Now let's create an instance and modify its state:
+
+```js
+const johnsAccount = new BankAccount("John", 100);
+console.log(johnsAccount.balance); // Outputs: 100
+
+johnsAccount.deposit(50);
+console.log(johnsAccount.balance); // Outputs: 150
+```
+
+In this example, the `deposit()` method modifies the internal state (the `balance` property) of the `BankAccount` instance.
+
+We can add more state-modifying methods:
+
+TypeScript:
+
+```ts
+class BankAccount {
+    public owner: string;
+    private balance: number;
+
+  constructor(owner: string, balance: number = 0) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+  
+  deposit(amount: number) {
+    this.balance += amount;
+  }
+
+  withdraw(amount: number) {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+    }
+  }
+  
+  transfer(amount: number, toAccount: BankAccount) {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+      toAccount.balance += amount;
+    }
+  }
+}
+```
+
+JavaScript:
+
+```js
+class BankAccount {
+  constructor(owner, balance = 0) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+  
+  deposit(amount) {
+    this.balance += amount;
+  }
+  
+  withdraw(amount) {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+    }
+  }
+  
+  transfer(amount, toAccount) {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+      toAccount.balance += amount;
+    }
+  }
+}
+```
+
+Now, we can manipulate our bank account in multiple ways!
+
+#### Example of Usage:
+
+TypeScript:
+
+```ts
+export class Thermostat {
+  public room: string;
+  public currentTemp: number;
+
+  constructor(room: string, currentTemp: number) {
+    this.room = room;
+    this.currentTemp = currentTemp;
+  }
+  
+  // Add the increaseTemp() method that increases temperature by 1 degree
+  increaseTemp() { this.currentTemp++; }
+  // Add the decreaseTemp() method that decreases temperature by 1 degree
+  decreaseTemp() { this.currentTemp--; }
+}
+```
+
+JavaScript:
+
+```js
+export class Thermostat {
+  constructor(room, currentTemp) {
+    this.room = room;
+    this.currentTemp = currentTemp;
+  }
+  
+  // Add the increaseTemp() method that increases temperature by 1 degree
+  increaseTemp() { this.currentTemp++; }
+  //  Add the decreaseTemp() method that decreases temperature by 1 degree
+  decreaseTemp() { this.currentTemp--; }
+}
+```
+
+Main.js:
+
+```js
+import { Thermostat } from './thermostat.js';
+
+// Test code - don't modify
+const livingRoom = new Thermostat("Living Room", 20);
+
+livingRoom.increaseTemp();
+livingRoom.increaseTemp();
+console.log(livingRoom.currentTemp); // Should output 22
+
+livingRoom.decreaseTemp();
+console.log(livingRoom.currentTemp); // Should output 21
+```
+
+##### Result:
+
+```
+22
+21
+```
