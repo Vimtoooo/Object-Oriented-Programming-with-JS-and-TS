@@ -97,7 +97,24 @@
 
 // Create a class named Book and export it
 
-import { Book } from "./Test.ts";
+// import { Book } from "./Test.ts";
 
-const myBook: Book = new Book("JavaScript Basics", "John Doe", 200);
-console.log(myBook.getInfo());
+// const myBook: Book = new Book("JavaScript Basics", "John Doe", 200);
+// console.log(myBook.getInfo());
+
+// Create the VendingMachine class and export it
+export class VendingMachine {
+    // Properties:
+    public location: string;
+    public drinks: number;
+
+    // Add a constructor that takes location (string) and drinks (number) parameters
+    constructor(location: string, drinks: number) {
+        this.location = location;
+        this.drinks = drinks;
+    };
+    // Add getStatus() method that returns a string like "Cafe machine: 15 drinks left"
+    getStatus() {
+        return `Cafe machine: ${this.drinks} drinks left`;
+    };
+};

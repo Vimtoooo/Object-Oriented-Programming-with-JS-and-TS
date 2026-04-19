@@ -1366,3 +1366,58 @@ console.log(book.getInfo());
 ```
 Title: JavaScript Basics, Author: John Doe, Pages: 200
 ```
+
+### Recap Challenge — The Vending Machine:
+
+TypeScript:
+
+```ts
+export class VendingMachine {
+    // Properties:
+    public location: string;
+    public drinks: number;
+
+    // Add a constructor that takes location (string) and drinks (number) parameters
+    constructor(location: string, drinks: number) {
+        this.location = location;
+        this.drinks = drinks;
+    };
+    // Add getStatus() method that returns a string like "Cafe machine: 15 drinks left"
+    getStatus() {
+        return `Cafe machine: ${this.drinks} drinks left`;
+    };
+};
+```
+
+JavaScript:
+
+```js
+// Create the VendingMachine class and export it 
+export class VendingMachine {
+    // Add a constructor that takes location (string) and drinks (number) parameters
+    constructor(location, drinks) {
+        this.location = location;
+        this.drinks = drinks;
+    };
+    // Add getStatus() method that returns a string like "Cafe machine: 15 drinks left"
+    getStatus() {
+        return `Cafe machine: ${this.drinks} drinks left`;
+    };
+};
+```
+
+Main.js:
+
+```js
+import { VendingMachine } from './VendingMachine.js';
+
+// Test - don't modify this part
+const cafeMachine = new VendingMachine("Cafe", 20);
+console.log(cafeMachine.getStatus()); // "Cafe machine: 20 drinks left"
+```
+
+##### Result:
+
+```
+Cafe machine: 20 drinks left
+```
