@@ -44,35 +44,60 @@
 //     return a * b;
 // }
 
-class Person {
+// class Person {
 
-    public name: string;
-    public age: number;
+//     public name: string;
+//     public age: number;
 
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    };
-};
+//     constructor(name: string, age: number) {
+//         this.name = name;
+//         this.age = age;
+//     };
+// };
 
-// const me = new Person("Blue", 21);
-// console.log(me.name)
+// // const me = new Person("Blue", 21);
+// // console.log(me.name)
 
-// Create a class named Car
-class Car {
+// // Create a class named Car
+// class Car {
 
-    make: string;
-    model: string;
+//     make: string;
+//     model: string;
 
-    // Add a constructor that takes two parameters: make and model
-    constructor(make: string, model: string) {
+//     // Add a constructor that takes two parameters: make and model
+//     constructor(make: string, model: string) {
 
-        // Set these values (make and model) as properties of the object
-        this.make = make;
-        this.model = model;
-    };
-};
+//         // Set these values (make and model) as properties of the object
+//         this.make = make;
+//         this.model = model;
+//     };
+// };
 
-const car = new Car("Honda", "Civic");
-console.log(car.make)
-console.log(car.model)
+// const car = new Car("Honda", "Civic");
+// console.log(car.make)
+// console.log(car.model)
+
+// class Car {
+//     public make: string;
+//     public model: string;
+
+//     constructor(make: string, model: string) {
+//         this.make = make;
+//         this.model = model;
+//     };
+
+//     getDescription(): string {
+//         return `This car is a ${this.make} ${this.model}.`;
+//     };
+// };
+
+// const myCar = new Car('Toyota', 'Corolla');
+// console.log(myCar.make);  // Output: 'Toyota'
+// console.log(myCar.model); // Output: 'Corolla'
+
+// Create a class named Book and export it
+
+import { Book } from "./Test.ts";
+
+const myBook: Book = new Book("JavaScript Basics", "John Doe", 200);
+console.log(myBook.getInfo());

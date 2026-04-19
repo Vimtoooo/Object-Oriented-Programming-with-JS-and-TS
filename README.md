@@ -1223,3 +1223,146 @@ console.log(student2.grade); // Should output 92
 Sarah
 92
 ```
+
+### Properties and Methods:
+
+Classes in JavaScript allow us to define properties and methods that will be shared by all instances of the class.
+
+#### Basic Syntax:
+
+Create a class with properties:
+
+TypeScript:
+
+```ts
+class Car {
+    public make: string;
+    public model: string;
+
+    constructor(make: string, model: string) {
+        this.make = make;
+        this.model = model;
+    };
+};
+```
+
+JavaScript:
+
+```js
+class Car {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  };
+};
+```
+
+When creating an instance, the constructor sets these properties:
+
+```js
+const myCar = new Car('Toyota', 'Corolla');
+console.log(myCar.make);  // Output: 'Toyota'
+console.log(myCar.model); // Output: 'Corolla'
+```
+
+#### Adding a Method to the Class:
+
+TypeScript:
+
+```ts
+class Car {
+    public make: string;
+    public model: string;
+
+    constructor(make: string, model: string) {
+        this.make = make;
+        this.model = model;
+    };
+
+    getDescription(): string {
+        return `This car is a ${this.make} ${this.model}.`;
+    };
+};
+```
+
+JavaScript:
+
+```js
+class Car {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  };
+  
+  getDescription() {
+    return `This car is a ${this.make} ${this.model}.`;
+  };
+};
+```
+
+Now, we can call this method on any instance:
+
+```js
+const myCar = new Car('Toyota', 'Corolla');
+console.log(myCar.getDescription()); // Output: 'This car is a Toyota Corolla.'
+```
+
+#### Example of Usage:
+
+TypeScript:
+
+```ts
+export class Book {
+    // Properties:
+    public title: string;
+    public author: string;
+    public pages: number;
+    
+    // Add a constructor that takes title, author, and pages parameters
+    constructor(title: string, author: string, pages: number) {
+        // Set the title, author, and pages parameters as properties.
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+    };
+    // Add a method called getInfo that returns a string in the format: “Title: [title], Author: [author], Pages: [pages]”
+    getInfo() {
+        return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}`;
+    };
+};
+```
+
+JavaScript:
+
+```js
+// Create a class named Book and export it
+export class Book {
+    // Add a constructor that takes title, author, and pages parameters
+    constructor(title, author, pages) {
+        // Set the title, author, and pages parameters as properties.
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+    };
+    // Add a method called getInfo that returns a string in the format: “Title: [title], Author: [author], Pages: [pages]”
+    getInfo() {
+        return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}`;
+    };
+};
+```
+
+Main.js:
+
+```js
+import { Book } from './book.js';
+
+// Test (do not modify this part)
+const book = new Book("JavaScript Basics", "John Doe", 200);
+console.log(book.getInfo());
+```
+
+##### Result:
+
+```
+Title: JavaScript Basics, Author: John Doe, Pages: 200
+```
