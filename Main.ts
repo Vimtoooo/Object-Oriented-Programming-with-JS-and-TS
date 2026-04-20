@@ -161,21 +161,59 @@
 //   decreaseTemp() { this.currentTemp--; }
 // }
 
-const counter: { count: number; increment(): object; decrement(): object; getValue(): number; } = {
-  count: 0,
+// const counter: { count: number; increment(): object; decrement(): object; getValue(): number; } = {
+//   count: 0,
   
-  increment() {
-    this.count++;
-    return this;
-  },
+//   increment() {
+//     this.count++;
+//     return this;
+//   },
   
-  decrement() {
-    this.count--;
-    return this;
-  },
+//   decrement() {
+//     this.count--;
+//     return this;
+//   },
   
-  getValue() {
-    return this.count;
-  }
-};
+//   getValue() {
+//     return this.count;
+//   }
+// };
 
+// function createUser(name: string, email: string): { getName(): string; getEmail(): string; setName(newName: string): void } {
+//   // These variables are private (encapsulated)
+//   let userName: string = name;
+//   let userEmail: string = email;
+  
+//   // Return an object with methods to interact with the private data
+//   return {
+//     getName: function():  string {
+//       return userName;
+//     },
+//     getEmail: function(): string {
+//       return userEmail;
+//     },
+//     setName: function(newName: string): void {
+//       userName = newName;
+//     }
+//   };
+// }
+// const encapsulatedUser = createUser("John", "john@example.com");
+
+// class User {
+//   private userName: string;
+//   private userEmail: string;
+
+//   constructor(userName: string, userEmail: string) {
+//     this.userName = userName;
+//     this.userEmail = userEmail;
+//   };
+
+//   getName(): string { return this.userName; }
+//   getEmail(): string { return this.userEmail; }
+//   setName(newName: string): void { this.userName = newName; }
+// };
+
+// const myUser: User = new User("Brad", "BigBrad@example.com");
+
+// console.log(myUser.getName());  // "Brad"
+// console.log(myUser.getEmail()); // "BigBrad@example.com"

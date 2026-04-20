@@ -61,12 +61,117 @@
 // const car = new Car("Honda", "Civic");
 // console.log(car.make)
 // console.log(car.model)
-// var Car = /** @class */ (function () {
-//     function Car(make, model) {
+// class Car {
+//     public make: string;
+//     public model: string;
+//     constructor(make: string, model: string) {
 //         this.make = make;
 //         this.model = model;
+//     };
+//     getDescription(): string {
+//         return `This car is a ${this.make} ${this.model}.`;
+//     };
+// };
+// const myCar = new Car('Toyota', 'Corolla');
+// console.log(myCar.make);  // Output: 'Toyota'
+// console.log(myCar.model); // Output: 'Corolla'
+// Create a class named Book and export it
+// import { Book } from "./Test.ts";
+// const myBook: Book = new Book("JavaScript Basics", "John Doe", 200);
+// console.log(myBook.getInfo());
+// Create the VendingMachine class and export it
+// export class VendingMachine {
+//     // Properties:
+//     public location: string;
+//     public drinks: number;
+//     // Add a constructor that takes location (string) and drinks (number) parameters
+//     constructor(location: string, drinks: number) {
+//         this.location = location;
+//         this.drinks = drinks;
+//     };
+//     // Add getStatus() method that returns a string like "Cafe machine: 15 drinks left"
+//     getStatus() {
+//         return `Cafe machine: ${this.drinks} drinks left`;
+//     };
+// };
+// class BankAccount {
+//     public owner: string;
+//     private balance: number;
+//   constructor(owner: string, balance: number = 0) {
+//     this.owner = owner;
+//     this.balance = balance;
+//   }
+//   deposit(amount: number) {
+//     this.balance += amount;
+//   }
+//   withdraw(amount: number) {
+//     if (amount <= this.balance) {
+//       this.balance -= amount;
+//     }
+//   }
+//   transfer(amount: number, toAccount: BankAccount) {
+//     if (amount <= this.balance) {
+//       this.balance -= amount;
+//       toAccount.balance += amount;
+//     }
+//   }
+// }
+// export class Thermostat {
+//   public room: string;
+//   public currentTemp: number;
+//   constructor(room: string, currentTemp: number) {
+//     this.room = room;
+//     this.currentTemp = currentTemp;
+//   }
+//   // Add the increaseTemp() method that increases temperature by 1 degree
+//   increaseTemp() { this.currentTemp++; }
+//   // Add the decreaseTemp() method that decreases temperature by 1 degree
+//   decreaseTemp() { this.currentTemp--; }
+// }
+// const counter: { count: number; increment(): object; decrement(): object; getValue(): number; } = {
+//   count: 0,
+//   increment() {
+//     this.count++;
+//     return this;
+//   },
+//   decrement() {
+//     this.count--;
+//     return this;
+//   },
+//   getValue() {
+//     return this.count;
+//   }
+// };
+// function createUser(name: string, email: string): { getName(): string; getEmail(): string; setName(newName: string): void } {
+//   // These variables are private (encapsulated)
+//   let userName: string = name;
+//   let userEmail: string = email;
+//   // Return an object with methods to interact with the private data
+//   return {
+//     getName: function():  string {
+//       return userName;
+//     },
+//     getEmail: function(): string {
+//       return userEmail;
+//     },
+//     setName: function(newName: string): void {
+//       userName = newName;
+//     }
+//   };
+// }
+// const encapsulatedUser = createUser("John", "john@example.com");
+// var User = /** @class */ (function () {
+//     function User(userName, userEmail) {
+//         this.userName = userName;
+//         this.userEmail = userEmail;
 //     }
 //     ;
-//     return Car;
+//     User.prototype.getName = function () { return this.userName; };
+//     User.prototype.getEmail = function () { return this.userEmail; };
+//     User.prototype.setName = function (newName) { this.userName = newName; };
+//     return User;
 // }());
 // ;
+// var myUser = new User("Brad", "BigBrad@example.com");
+// console.log(myUser.getName()); // "Brad"
+// console.log(myUser.getEmail()); // "BigBrad@example.com"

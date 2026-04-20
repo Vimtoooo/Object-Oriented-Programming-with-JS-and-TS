@@ -1664,7 +1664,7 @@ console.log(counter.getValue()); // Output: 1
 
 The key to method chaining is returning `this` from each method that you want to be chainable.
 
-#### Example of Usage JS ONLY:
+#### Example of Usage (JS ONLY):
 
 ```js
 export const calculator = {
@@ -1701,4 +1701,175 @@ export const calculator = {
 ```
 20
 4
+```
+
+## Encapsulation & Access:
+
+### Encapsulation:
+
+**Encapsulation** is a process of combining data inside a class within one unit.
+
+This helps to put restrictions on accessing class data directly, eventually helping us to prevent any accidental modification of data.
+
+#### Basic Syntax:
+
+Let's see encapsulation in action with a simple example. Create a basic object with public properties:
+
+TypeScript:
+
+```ts
+const user: { name: string; email: string; } = {
+  name: "John",
+  email: "john@example.com"
+};
+```
+
+JavaScript:
+
+```js
+const user = {
+  name: "John",
+  email: "john@example.com"
+};
+```
+
+Now anyone can directly access and modify these properties:
+
+```js
+user.name = "Jane"; // Easy to modify from outside
+console.log(user.email); // Easy to access from outside
+```
+
+JAVASCRIPT ONLY:
+
+```js
+function createUser(name, email) {
+  // These variables are private (encapsulated)
+  let userName = name;
+  let userEmail = email;
+  
+  // Return an object with methods to interact with the private data
+  return {
+    getName: function() {
+      return userName;
+    },
+    getEmail: function() {
+      return userEmail;
+    },
+    setName: function(newName) {
+      userName = newName;
+    }
+  };
+}
+const encapsulatedUser = createUser("John", "john@example.com");
+```
+
+Now, to interact with the data:
+
+```js
+console.log(encapsulatedUser.getName()); // "John"
+encapsulatedUser.setName("Jane");
+console.log(encapsulatedUser.getName()); // "Jane"
+
+// Cannot directly access the data
+console.log(encapsulatedUser.userName); // undefined
+```
+
+#### Better Solution:
+
+Although the above solution works just fine, it's always keep creating more of the duplicate functions whenever an object is created by the method call, drastically increasing the usage of memory. The best approach would be to create a class that provides all of these methods, allowing all objects to have access to the same methods, other than having to create duplicates every time.
+
+TypeScript: Uses the `private` keyword for encapsulation
+
+```ts
+class User {
+  private userName: string;
+  private userEmail: string;
+
+  constructor(userName: string, userEmail: string) {
+    this.userName = userName;
+    this.userEmail = userEmail;
+  };
+
+  getName(): string { return this.userName; }
+  getEmail(): string { return this.userEmail; }
+  setName(newName: string): void { this.userName = newName; }
+};
+
+const myUser: User = new User("Brad", "BigBrad@example.com");
+
+console.log(myUser.getName());  // "Brad"
+console.log(myUser.getEmail()); // "BigBrad@example.com"
+```
+
+JavaScript: Uses the `#` hashtag symbol for private fields
+
+```js
+class User {
+  // Use # for true private fields
+  #userName;
+  #userEmail;
+
+  constructor(userName, userEmail) {
+    this.#userName = userName;
+    this.#userEmail = userEmail;
+  }
+
+  getName() { return this.#userName; }
+  getEmail() { return this.#userEmail; }
+  
+  // Encapsulation allows controlling changes
+  setName(newName) { 
+    if (newName) {
+      this.#userName = newName; 
+    }
+  }
+}
+
+const myUser = new User("Brad", "BigBrad@example.com");
+
+console.log(myUser.getName());  // "Brad"
+console.log(myUser.getEmail()); // "BigBrad@example.com"
+
+// console.log(myUser.#userName); // SyntaxError: Private field '#userName' must be declared in an enclosing class
+```
+
+#### Example of Usage (JS ONLY):
+
+createUser.js:
+
+```js
+export function createUser(username, age) {
+  // Private data - cannot be accessed directly
+  let privateUsername = username;
+  let privateAge = age;
+  
+  // Public methods to interact with private data
+  return {
+    getUsername: function() {
+      return privateUsername;
+    },
+  
+    // Add the getAge() method that returns the correct age and the age info remains private
+    getAge() { return privateAge; }
+  };
+}
+```
+
+main.js:
+
+```js
+import { createUser } from './createUser.js';
+
+// Test code - don't modify
+const user = createUser("john_doe", 25);
+console.log(user.getUsername()); // Should output "john_doe"
+console.log(user.getAge());      // Should output 25
+```
+
+##### Result:
+
+```
+john_doe
+25
 ```
