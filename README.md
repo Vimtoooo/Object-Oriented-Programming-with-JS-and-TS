@@ -1834,6 +1834,8 @@ console.log(myUser.getEmail()); // "BigBrad@example.com"
 // console.log(myUser.#userName); // SyntaxError: Private field '#userName' must be declared in an enclosing class
 ```
 
+Choosing this approach, you will be able to reutilize your code anytime you crate objects of that particular blueprint and reuse the same methods any time, saving lots of memory throughout the program!
+
 #### Example of Usage (JS ONLY):
 
 createUser.js:
@@ -1872,4 +1874,157 @@ console.log(user.getAge());      // Should output 25
 ```
 john_doe
 25
+```
+
+### Public & Private Class Fields:
+
+In JavaScript classes, we can define two types of class fields: **public and private**, however, TypeScript introduces the `protected` field for encapsulation, allowing classes that inherit from the same class to also have access to the same fields and attributes!
+
+#### Basic Syntax:
+
+Here are both approaches that you can use when applying encapsulation to your attributes on the go.
+
+##### Public Fields:
+
+Create a class with public fields:
+
+TypeScript:
+
+```ts
+class Student {
+  public name: string;
+  public grade: number;
+
+  constructor(name: string, grade: number) {
+    this.name = name;
+    this.grade = grade;
+  }
+}
+```
+
+JavaScript:
+
+```js
+class Student {
+  // Assigning properties in JavaScript with empty values are optional, for readability!
+  name = '';
+  grade = 0;
+  
+  constructor(name, grade) {
+    this.name = name;
+    this.grade = grade;
+  }
+}
+```
+
+Create a student instance:
+
+```js
+const student = new Student('Alice', 95);
+
+// Access public fields from outside the class:
+console.log(student.name); // Output: "Alice"
+student.grade = 98;
+console.log(student.grade); // Output: 98
+```
+
+##### Private Fields:
+
+**Private fields** are denoted with the `#` symbol (JS) or with the `private` keyword (TS) and can only be accessed from within the class, so classes that inherit from the parent class will not have access to these private attributes:
+
+TypeScript:
+
+```ts
+class Student {
+  public name: string;
+  private grade: number;
+  
+  constructor(name: string, grade: number) {
+    this.name = name;
+    this.grade = grade;
+  }
+  
+  getGrade(): number {
+    return this.grade;
+  }
+  
+  updateGrade(newGrade: number): void {
+    this.grade = newGrade;
+  }
+}
+```
+
+JavaScript:
+
+```js
+class Student {
+  name = '';
+  #grade = 0;
+  
+  constructor(name, grade) {
+    this.name = name;
+    this.#grade = grade;
+  }
+  
+  getGrade() {
+    return this.#grade;
+  }
+  
+  updateGrade(newGrade) {
+    this.#grade = newGrade;
+  }
+}
+```
+
+Using private fields:
+
+```js
+const student = new Student('Bob', 87);
+console.log(student.name); // Output: "Bob"
+
+// Access private field using a method
+console.log(student.getGrade()); // Output: 87
+
+// Update private field using a method
+student.updateGrade(92);
+console.log(student.getGrade()); // Output: 92
+
+// This would cause an error:
+// console.log(student.#grade); // SyntaxError
+```
+
+If you try to call the private instance attributes directly from your object, the program would raise a syntax error, causing your program to crash. So making sure that your classes provide getter or setter methods would help with retrieving these encapsulated data.
+
+#### Example of Usage (JS ONLY):
+
+UserAccount.js:
+
+```js
+export class UserAccount {
+  // Add a public field username
+  username = "";
+  // Add a private field #password
+  #password = 0;
+  // Add a constructor that takes username and password parameters and sets them as properties
+  constructor(username, password) {
+    this.username = username;
+    this.#password = password;
+  }
+}
+```
+
+main.js:
+
+```js
+import { UserAccount } from './userAccount.js';
+
+// Test code:
+const user = new UserAccount("alice", "secret123");
+console.log(user.username);          // Should output "alice"
+```
+
+##### Result:
+
+```
+alice
 ```

@@ -217,3 +217,21 @@
 
 // console.log(myUser.getName());  // "Brad"
 // console.log(myUser.getEmail()); // "BigBrad@example.com"
+
+class Student {
+  public name: string;
+  private grade: number;
+  
+  constructor(name: string, grade: number) {
+    this.name = name;
+    this.grade = grade;
+  }
+  
+  getGrade(): number {
+    return this.grade;
+  }
+  
+  updateGrade(newGrade: number): void {
+    this.grade = newGrade;
+  }
+}
