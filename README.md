@@ -1599,3 +1599,106 @@ console.log(livingRoom.currentTemp); // Should output 21
 22
 21
 ```
+
+### Method Chaining Pattern:
+
+Method chaining is a programming pattern that allows you to *call multiple methods on the same object in a single statement*. Each method returns the object itself (`this`), enabling you to call the next method on the same line.
+
+#### Basic Syntax:
+
+Create a simple counter object:
+
+TypeScript:
+
+```ts
+const counter: { count: number; increment(): object; decrement(): object; getValue(): number; } = {
+  count: 0,
+  
+  increment() {
+    this.count++;
+    return this;
+  },
+  
+  decrement() {
+    this.count--;
+    return this;
+  },
+  
+  getValue() {
+    return this.count;
+  }
+};
+```
+
+JavaScript:
+
+```js
+const counter = {
+  count: 0,
+  
+  increment() {
+    this.count++;
+    return this;
+  },
+  
+  decrement() {
+    this.count--;
+    return this;
+  },
+  
+  getValue() {
+    return this.count;
+  }
+};
+```
+
+Now, you can chain methods together:
+
+```js
+// Chain multiple operations
+counter.increment().increment().decrement();
+
+// The count is now 1
+console.log(counter.getValue()); // Output: 1
+```
+
+The key to method chaining is returning `this` from each method that you want to be chainable.
+
+#### Example of Usage JS ONLY:
+
+```js
+export const calculator = {
+  value: 0,
+  
+  add(n) {
+    this.value += n;
+    return this;
+  },
+  
+  subtract(n) {
+    this.value -= n;
+    return this;
+  },
+  
+  multiply(n) {
+    this.value *= n;
+    return this;
+  },
+  
+  divide(n) {
+    this.value /= n;
+    return this;
+  },
+  
+  getValue() {
+    return this.value;
+  }
+};
+```
+
+##### Result:
+
+```
+20
+4
+```

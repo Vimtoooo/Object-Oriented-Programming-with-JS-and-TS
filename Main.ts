@@ -146,18 +146,36 @@
 //   }
 // }
 
+// export class Thermostat {
+//   public room: string;
+//   public currentTemp: number;
 
-export class Thermostat {
-  public room: string;
-  public currentTemp: number;
-
-  constructor(room: string, currentTemp: number) {
-    this.room = room;
-    this.currentTemp = currentTemp;
-  }
+//   constructor(room: string, currentTemp: number) {
+//     this.room = room;
+//     this.currentTemp = currentTemp;
+//   }
   
-  // Add the increaseTemp() method that increases temperature by 1 degree
-  increaseTemp() { this.currentTemp++; }
-  // Add the decreaseTemp() method that decreases temperature by 1 degree
-  decreaseTemp() { this.currentTemp--; }
-}
+//   // Add the increaseTemp() method that increases temperature by 1 degree
+//   increaseTemp() { this.currentTemp++; }
+//   // Add the decreaseTemp() method that decreases temperature by 1 degree
+//   decreaseTemp() { this.currentTemp--; }
+// }
+
+const counter: { count: number; increment(): object; decrement(): object; getValue(): number; } = {
+  count: 0,
+  
+  increment() {
+    this.count++;
+    return this;
+  },
+  
+  decrement() {
+    this.count--;
+    return this;
+  },
+  
+  getValue() {
+    return this.count;
+  }
+};
+
