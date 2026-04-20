@@ -2028,3 +2028,143 @@ console.log(user.username);          // Should output "alice"
 ```
 alice
 ```
+
+### Private Methods:
+
+Private methods in JavaScript classes allow you to hide implementation detais and prevent external access to internal functionality:
+
+Starting in ES2022, private methods can be defined using the `#` prefix, whereas in TypeScript, you use the `private` keyword.
+
+#### Basic Syntax:
+
+TypeScript:
+
+```ts
+class Counter {
+  private count: number = 0;
+  
+  // Create a private method
+  private increment(): void {
+    this.count++;
+  }
+  
+  // Public method that uses the private method
+  addOne(): number {
+    this.increment();
+    return this.count;
+  }
+}
+
+const myCounter = new Counter();
+
+console.log(myCounter.addOne());  // 1
+```
+
+JavaScript:
+
+```js
+class Counter {
+  #count = 0;
+  
+  // Create a private method
+  #increment() {
+    this.#count++;
+  }
+  
+  // Public method that uses the private method
+  addOne() {
+    this.#increment();
+    return this.#count;
+  }
+}
+
+// Creating the counter instance
+const myCounter = new Counter();
+
+// Using the public method
+console.log(myCounter.addOne());  // 1
+
+// But trying to access the private method directly will cause an error:
+myCounter.#increment(); // Error: Private method is not accessible outside class
+```
+
+Private methods help maintain encapsulation by keeping internal implementation details hidden from the outside world.
+
+#### Example of Usage:
+
+messageBox.js:
+
+TypeScript:
+
+```ts
+export class MessageBox {
+  private message: string = "";
+  
+  setMessage(text: string): string {
+    if (this.isValidMessage(text)) {
+      this.message = text;
+      return "Message set!";
+    }
+    return "Invalid message!";
+  }
+  
+  getMessage(): string {
+    return this.message;
+  }
+  
+  // Add a private method called #isValidMessage(text)
+  private isValidMessage(text: string): boolean {
+    if (text.length === 0 || text.length >= 100) return false;
+
+    // Make it return true if the text is not empty and less than 100 characters, otherwise return false
+    return true;
+  }
+}
+```
+
+JavaScript:
+
+```js
+export class MessageBox {
+  #message = "";
+  
+  setMessage(text) {
+    if (this.#isValidMessage(text)) {
+      this.#message = text;
+      return "Message set!";
+    }
+    return "Invalid message!";
+  }
+  
+  getMessage() {
+    return this.#message;
+  }
+  
+  // Add a private method called #isValidMessage(text)
+  #isValidMessage(text) {
+    if (text.length === 0 || text.length >= 100) return false;
+    
+    // Make it return true if the text is not empty and less than 100 characters, otherwise return false
+    return true;
+  }
+}
+```
+
+main.js:
+
+```js
+import { MessageBox } from './messageBox.js';
+
+// Using the message box
+const box = new MessageBox();
+
+console.log(box.setMessage("Hello"));    // "Message set!" (uses #isValidMessage)
+console.log(box.setMessage(""));         // "Invalid message!" (uses #isValidMessage)
+```
+
+##### Result:
+
+```
+Message set!
+Invalid message!
+```

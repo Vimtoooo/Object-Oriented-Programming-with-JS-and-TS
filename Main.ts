@@ -218,20 +218,63 @@
 // console.log(myUser.getName());  // "Brad"
 // console.log(myUser.getEmail()); // "BigBrad@example.com"
 
-class Student {
-  public name: string;
-  private grade: number;
+// class Student {
+//   public name: string;
+//   private grade: number;
   
-  constructor(name: string, grade: number) {
-    this.name = name;
-    this.grade = grade;
+//   constructor(name: string, grade: number) {
+//     this.name = name;
+//     this.grade = grade;
+//   }
+  
+//   getGrade(): number {
+//     return this.grade;
+//   }
+  
+//   updateGrade(newGrade: number): void {
+//     this.grade = newGrade;
+//   }
+// }
+
+class Counter {
+  private count: number = 0;
+  
+  // Create a private method
+  private increment(): void {
+    this.count++;
   }
   
-  getGrade(): number {
-    return this.grade;
+  // Public method that uses the private method
+  addOne(): number {
+    this.increment();
+    return this.count;
+  }
+}
+
+const myCounter = new Counter();
+
+console.log(myCounter.addOne());
+
+export class MessageBox {
+  private message: string = "";
+  
+  setMessage(text: string): string {
+    if (this.isValidMessage(text)) {
+      this.message = text;
+      return "Message set!";
+    }
+    return "Invalid message!";
   }
   
-  updateGrade(newGrade: number): void {
-    this.grade = newGrade;
+  getMessage(): string {
+    return this.message;
+  }
+  
+  // Add a private method called #isValidMessage(text)
+  private isValidMessage(text: string): boolean {
+    if (text.length === 0 || text.length >= 100) return false;
+
+    // Make it return true if the text is not empty and less than 100 characters, otherwise return false
+    return true;
   }
 }
