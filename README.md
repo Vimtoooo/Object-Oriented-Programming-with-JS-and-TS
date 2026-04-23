@@ -2331,3 +2331,60 @@ fiction.read();    // "Reading 1984 by George Orwell" - inherited from Book
 ```
 
 When you make inheritance, it is key to call the `super()` method to export necessary values to external classes from other modules that require other values to be passed onto their instance attributes. But we will cover the `super()` method later on.
+
+### The 'extends' Keyword:
+
+The `extends` keyword in JavaScript (similar to Java) is used to **initialize a child class that inherits from a distinct class** to create and have access to *properties and methods from a parent class*.
+
+#### Basic Syntax:
+
+Let's firsts create a parent class called `Animal`:
+
+TypeScript:
+
+```ts
+class Animal {
+  public name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  
+  speak(): string {
+    return `${this.name} makes a noise.`;
+  }
+}
+```
+
+JavaScript:
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    return `${this.name} makes a noise.`;
+  }
+}
+```
+
+Now, build a child class that will extend from the parent class. This class should be called `Dog`:
+
+```js
+class Dog extends Animal {
+  // The Dog class inherits from Animal
+}
+```
+
+This brief demonstration indicates that the `Dog` class is now inheriting to all properties and methods from the `Animal` class.
+
+```js
+// Create a dog instance:
+const dog = new Dog('Rex');
+
+// Call a method inherited from the parent:
+console.log(dog.speak()); // Outputs: "Rex makes a noise."
+```
+
+The `extends` keyword is fundamental for creating bonds and relationships with inheritance where the child class (`Dog`) can access and use all functionality defined in the parent class (`Animal`).
