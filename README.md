@@ -2168,3 +2168,115 @@ console.log(box.setMessage(""));         // "Invalid message!" (uses #isValidMes
 Message set!
 Invalid message!
 ```
+
+## Inheritance & The 'extends' Key:
+
+### Inheritance:
+
+In object oriented programming, inheritance in JavaScript gives any class the access to gain all of the public properties and methods from another class.
+
+#### Basic Syntax:
+
+Here is an example of a parent class called `Vehicle`:
+
+TypeScript:
+
+```ts
+class Vehicle {
+ public brand: string;
+ public model: string;
+ constructor(brand: string, model: string) {
+   this.brand = brand;
+   this.model = model;
+ }
+ drive(): void {
+   console.log("Driving!");
+ }
+}
+```
+
+JavaScript:
+
+```js
+class Vehicle {
+ constructor(brand, model) {
+   this.brand = brand;
+   this.model = model;
+ }
+ drive() {
+   console.log("Driving!");
+ }
+}
+```
+
+Now, we build a child class called `Car` that will inherit from the `Vehicle` class.
+
+TypeScript:
+
+```ts
+// Car inherits from Vehicle
+class Car extends Vehicle {
+ honk(): void {
+   console.log("Beep beep!");
+ }
+}
+```
+
+JavaScript:
+
+```js
+// Car inherits from Vehicle
+class Car extends Vehicle {
+ honk() {
+   console.log("Beep beep!");
+ }
+}
+```
+
+When we create an instance of the `Car` class, this object will automatically have access to public methods and attributes that the `Vehicle` class has to offer:
+
+```js
+const myCar = new Car("Toyota", "Camry");
+console.log(myCar.brand);  // "Toyota" - inherited from Vehicle
+console.log(myCar.model);  // "Camry" - inherited from Vehicle
+// Car can access Vehicle's methods
+myCar.drive();  // "Driving!" - inherited from Vehicle
+// Car also has its own methods
+myCar.honk();   // "Beep beep!" - specific to Car
+```
+
+#### Example of Usage (JS ONLY):
+
+animal.js:
+
+```js
+class Animal {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+export class Dog extends Animal {
+  // Dog inherits from Animal
+}
+```
+
+main.js:
+
+```js
+import { Dog } from './animal.js';
+
+// Create myDog object with name "Buddy" and age 3.
+const myDog = new Dog("Buddy", 3);
+
+console.log(myDog.name);  // Should output "Buddy"
+console.log(myDog.age);  // Should output 3
+```
+
+##### Result:
+
+```
+Buddy
+3
+```

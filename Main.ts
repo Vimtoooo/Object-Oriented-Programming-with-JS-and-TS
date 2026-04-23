@@ -278,3 +278,29 @@
 //     return true;
 //   }
 // }
+class Vehicle {
+  public brand: string;
+  public model: string;
+  constructor(brand: string, model: string) {
+    this.brand = brand;
+    this.model = model;
+  }
+  drive(): void {
+    console.log("Driving!");
+  }
+}
+
+// Car inherits from Vehicle
+class Car extends Vehicle {
+ honk(): void {
+   console.log("Beep beep!");
+ }
+}
+
+const myCar = new Car("Toyota", "Camry");
+console.log(myCar.brand);  // "Toyota" - inherited from Vehicle
+console.log(myCar.model);  // "Camry" - inherited from Vehicle
+// Car can access Vehicle's methods
+myCar.drive();  // "Driving!" - inherited from Vehicle
+// Car also has its own methods
+myCar.honk();   // "Beep beep!" - specific to Car
