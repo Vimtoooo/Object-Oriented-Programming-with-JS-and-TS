@@ -2280,3 +2280,54 @@ console.log(myDog.age);  // Should output 3
 Buddy
 3
 ```
+
+### The "is-a" Relationship:
+
+The "is-a" relationship is an affirmation that is easy to comprehend when determining inheritance to make more sense. For a brief example, you say that **"A is a B"** and it sounds correct, then A should inherit from B.
+
+#### Correct Terminology:
+
+##### Correct (User Inheritance):
+
+* "A dog **is an** Animal" -> `class Dog extends Animal`
+* "A Car is a Vehicle" -> `class Car Extends Vehicle`
+* "A Textbook is a Book" -> `class Textbook extends Book`
+
+##### Incorrect (Don't use Inheritance):
+
+* "A Driver is a Car" -> No, a driver uses a car
+* "A Wheel is a Car" -> No, a wheel is part of a car
+* "A Student is a Classroom" -> No, a student is in a classroom
+
+#### Basic Syntax (JS ONLY):
+
+For example, let's consider tow objects:
+
+```js
+// Base class - what they all ARE
+class Book {
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+  }
+  
+  read() {
+    console.log(`Reading ${this.title} by ${this.author}`);
+  }
+}
+
+// A Novel IS-A Book (correct inheritance)
+class Novel extends Book {
+  constructor(title, author, pages, genre) {
+    super(title, author, pages);
+    this.genre = genre;
+  }
+}
+
+// Using the classes
+const fiction = new Novel("1984", "George Orwell", 328, "Dystopian");
+fiction.read();    // "Reading 1984 by George Orwell" - inherited from Book
+```
+
+When you make inheritance, it is key to call the `super()` method to export necessary values to external classes from other modules that require other values to be passed onto their instance attributes. But we will cover the `super()` method later on.
