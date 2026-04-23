@@ -236,45 +236,47 @@
 //   }
 // }
 
-class Counter {
-  private count: number = 0;
+// class Counter {
+//   private count: number = 0;
   
-  // Create a private method
-  private increment(): void {
-    this.count++;
-  }
+//   // Create a private method
+//   private increment(): void {
+//     this.count++;
+//   }
   
-  // Public method that uses the private method
-  addOne(): number {
-    this.increment();
-    return this.count;
-  }
-}
+//   // Public method that uses the private method
+//   addOne(): number {
+//     this.increment();
+//     return this.count;
+//   }
+// }
 
-const myCounter = new Counter();
+// const myCounter = new Counter();
 
-console.log(myCounter.addOne());
+// console.log(myCounter.addOne());
 
-export class MessageBox {
-  private message: string = "";
+// export class MessageBox {
+//   private message: string = "";
   
-  setMessage(text: string): string {
-    if (this.isValidMessage(text)) {
-      this.message = text;
-      return "Message set!";
-    }
-    return "Invalid message!";
-  }
+//   setMessage(text: string): string {
+//     if (this.isValidMessage(text)) {
+//       this.message = text;
+//       return "Message set!";
+//     }
+//     return "Invalid message!";
+//   }
   
-  getMessage(): string {
-    return this.message;
-  }
+//   getMessage(): string {
+//     return this.message;
+//   }
   
-  // Add a private method called #isValidMessage(text)
-  private isValidMessage(text: string): boolean {
-    if (text.length === 0 || text.length >= 100) return false;
+//   // Add a private method called #isValidMessage(text)
+//   private isValidMessage(text: string): boolean {
+//     if (text.length === 0 || text.length >= 100) return false;
 
-    // Make it return true if the text is not empty and less than 100 characters, otherwise return false
-    return true;
-  }
-}
+//     // Make it return true if the text is not empty and less than 100 characters, otherwise return false
+//     return true;
+//   }
+// }
+
+import { BankAccount } from './Projects/Bank_Account/bankAccount.js'
