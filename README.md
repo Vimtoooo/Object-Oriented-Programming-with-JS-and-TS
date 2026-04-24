@@ -2591,7 +2591,7 @@ export class Dessert {
   }
 }
 
-class Cake extends Dessert {
+export class Cake extends Dessert {
   constructor(name, calories, flavor) {
     super(name, calories);
     this.flavor = flavor;
@@ -2618,4 +2618,134 @@ console.log(myCake.addCandles()); // Should output "Added candles to Birthday Ca
 Birthday Cake has 300 calories
 Chocolate
 Added candles to Birthday Cake!
+```
+
+
+## Organizing OOP Code:
+
+### Organize Classes into Modules:
+
+The best thing you can do to organize all of your modules and classes is to keep them in specific repositories/folders, where then, you would already know how to localize these class modules in the first place!
+
+#### Basic Syntax:
+
+When storing your class files, keep them inside the `src` folder as shown below:
+
+```text
+my-project/
+└── src/
+    ├── models/
+    │   └── User.js
+    ├── services/
+    │   └── AuthService.js
+    └── utils/
+        └── helpers.js
+```
+
+##### Why 'src'?
+
+* Clearly separates **code you write** from **config files, build outputs, or tests**
+* Industry standard — Other developers will understand immediately
+* Works with bundlers (Webpack, Vite) and compilers (TypeScript, Babel) that often expect `src/` -> `dist/` or `build/`
+
+#### Project Type Structure:
+
+|          **Project Type**          |      **Typical Folder**      |               Examples                |
+| :--------------------------------: | :--------------------------: | :-----------------------------------: |
+|     Small Script (1 - 3 files)     |          Root Folder         |         `index.js`, `user.js`         |
+|     Library / app source code      |            `src/`            |             `src/User.js`             |
+|         Backend (Node.js)          |       `src/` or `lib/`       |          `src/controllers/`           |
+|       Frontend (React, Vue)        |            `src/`            |          `src/components/`            |
+|   Compiled Language (TS -> JS)     |      `src/` -> `dist/`       |   `src/index.ts` -> `dist/index.js`   |
+
+#### How to Organize Folders & Files — General Principles:
+
+##### Group By Feature or Type (larger apps):
+
+```text
+src/
+├── auth/
+│   ├── AuthService.js
+│   ├── AuthController.js
+│   └── UserModel.js
+├── payment/
+│   ├── PaymentService.js
+│   └── CreditCardValidator.js
+```
+
+##### Keeping a Consistent Top-Level Structure:
+
+```text
+my-project/
+├── src/                  # all source code
+│   ├── index.js          # entry point
+│   ├── components/       # UI components (React/Vue)
+│   ├── models/           # JS classes (data structures)
+│   ├── services/         # API calls, business logic
+│   ├── utils/            # reusable helpers
+│   ├── config/           # configuration files
+│   └── tests/            # unit tests (or keep separate at root)
+├── dist/ or build/       # compiled output (auto-generated)
+├── node_modules/
+├── .env                  # environment variables
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+###### Storing JavaScript Class files:
+
+If you have multiple classes:
+
+```text
+src/
+├── models/
+│   ├── User.js
+│   ├── Product.js
+│   └── ShoppingCart.js
+```
+
+Or if each class has **associated logic** (e.g., User + UserService + UserValidator):
+
+```text
+src/
+├── user/
+│   ├── User.js           # class definition
+│   ├── UserService.js    # CRUD operations
+│   └── userUtils.js
+├── product/
+│   └── Product.js
+```
+
+#### What NOT to do:
+
+❌ Dumping all `.js` files in the root (except tiny scripts)
+❌ `src/` -> `classes/` -> `user/` -> `models/` -> `User.js` (too deep)
+❌ Mixing source code with config files:
+
+```text
+src/
+  index.js
+  package.json  ← wrong, belongs at root
+  webpack.config.js  ← wrong
+```
+
+#### Summary:
+
+Here is a simple template that you can follow today to help you to keep all of your files and source code organized in the future!
+
+```text
+project-root/
+├── src/                      ← your code goes here
+│   ├── index.ts or .js       ← main entry
+│   ├── models/               ← class files
+│   ├── utils/                ← helpers
+│   └── config/               ← Configure files (app configuration such as logic or settings)
+├── dist/
+|   └── index.js
+├── tests/             (or inside src/tests)
+├── .gitignore
+├── package.json
+├── tsconfig.json             ← tool config
+└── README.md
 ```
