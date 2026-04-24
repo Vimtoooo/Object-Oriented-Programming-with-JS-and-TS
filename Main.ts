@@ -305,17 +305,39 @@
 // // Car also has its own methods
 // myCar.honk();   // "Beep beep!" - specific to Car
 
-class Animal {
+// class Animal {
+//   public name: string;
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+  
+//   speak(): string {
+//     return `${this.name} makes a noise.`;
+//   }
+// }
+
+// class Dog extends Animal {
+//   // The Dog class inherits from Animal
+// }
+
+// Parent class:
+class Employee {
   public name: string;
   constructor(name: string) {
     this.name = name;
   }
-  
-  speak(): string {
-    return `${this.name} makes a noise.`;
+}
+
+// Child class:
+class Manager extends Employee {
+  public department: string;
+  constructor(name: string, department: string) {
+    super(name); // Call the parent constructor with name
+    this.department = department;
   }
 }
 
-class Dog extends Animal {
-  // The Dog class inherits from Animal
-}
+// Create instances of the child class:
+const myManager = new Manager("Sarah", "Engineering");
+console.log(myManager.name);      // "Sarah"
+console.log(myManager.department); // "Engineering"

@@ -2388,3 +2388,113 @@ console.log(dog.speak()); // Outputs: "Rex makes a noise."
 ```
 
 The `extends` keyword is fundamental for creating bonds and relationships with inheritance where the child class (`Dog`) can access and use all functionality defined in the parent class (`Animal`).
+
+### The 'super()' Method:
+
+The `super()` method in JavaScript calls any methods or constructors from an external class or module and performs the necessary tasks that have been called for. But in a constructor method, it'll pass the values to create and initialize and instance attribute from that external class. Note that it **must be called before you can add any properties to the child class!**
+
+You can think of it in a way that the parent class builds the foundation of the object, and the `super()` would prompt the program to "build that foundation first" before the child class add its own features.
+
+#### Basic Syntax:
+
+TypeScript:
+
+```ts
+// Parent class:
+class Employee {
+  public name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+// Child class:
+class Manager extends Employee {
+  public department: string;
+  constructor(name: string, department: string) {
+    super(name); // Call the parent constructor with name
+    this.department = department;
+  }
+}
+
+// Create an instance of the child class:
+const myManager = new Manager("Sarah", "Engineering");
+console.log(myManager.name);      // "Sarah"
+console.log(myManager.department); // "Engineering"
+```
+
+JavaScript:
+
+```js
+// Parent class:
+class Employee {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// Child class:
+class Manager extends Employee {
+  constructor(name, department) {
+    super(name); // Call the parent constructor with name
+    this.department = department;
+  }
+}
+
+// Create an instance of the child class:
+const myManager = new Manager("Sarah", "Engineering");
+console.log(myManager.name);      // "Sarah"
+console.log(myManager.department); // "Engineering"
+```
+
+##### Breakdown:
+
+- `constructor(name, department)`: The `Manager` class will need both name and department values.
+- `super(name)`: Passes `name` to `Employee`'s constructor.
+- `this.department`: Sets the `Manager`'s unique property.
+
+This entire program should create an `Manager` object that has both inherited properties (`name`) and its own property (`department`).
+
+##### Summary:
+
+The `super()` method must be called before using `this` in the constructor of a derived class. If you don't call `super()`, JavaScript will throw a reference error.
+
+#### Example of Usage (JS ONLY):
+
+meals.js:
+
+```js
+export class Meal {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+export class Salad extends Meal {
+  constructor(name, ingredients) {
+    // super() calls the parent constructor method
+    super(name);
+    
+    // Set ingredients property to the child class
+    this.ingredients = ingredients;
+  }
+}
+```
+
+main.js:
+
+```js
+import { Meal } from './meals.js';
+import { Salad } from './meals.js';
+
+const salad = new Salad("Caesar", ["lettuce", "croutons", "cheese"]);
+console.log(salad.name);       // Should output "Caesar"
+console.log(salad.ingredients); // Should output ["lettuce", "croutons", "cheese"]
+```
+
+##### Result:
+
+```
+Caesar
+[ "lettuce", "croutons", "cheese" ]
+```
