@@ -321,23 +321,48 @@
 // }
 
 // Parent class:
-class Employee {
+// class Employee {
+//   public name: string;
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+// }
+
+// // Child class:
+// class Manager extends Employee {
+//   public department: string;
+//   constructor(name: string, department: string) {
+//     super(name); // Call the parent constructor with name
+//     this.department = department;
+//   }
+// }
+
+// // Create instances of the child class:
+// const myManager = new Manager("Sarah", "Engineering");
+// console.log(myManager.name);      // "Sarah"
+// console.log(myManager.department); // "Engineering"
+
+class Animal {
   public name: string;
-  constructor(name: string) {
+  public age: number;
+  constructor(name: string, age: number) {
     this.name = name;
+    this.age = age;
+  }
+  
+  eat(): string {
+    return `${this.name} is eating`;
+  }
+  
+  sleep(): string {
+    return `${this.name} is sleeping`;
   }
 }
 
-// Child class:
-class Manager extends Employee {
-  public department: string;
-  constructor(name: string, department: string) {
-    super(name); // Call the parent constructor with name
-    this.department = department;
+class Dog extends Animal {
+  public breed: string;
+  constructor(name: string, age: number, breed: string) {
+    super(name, age);
+    this.breed = breed;
   }
 }
-
-// Create instances of the child class:
-const myManager = new Manager("Sarah", "Engineering");
-console.log(myManager.name);      // "Sarah"
-console.log(myManager.department); // "Engineering"

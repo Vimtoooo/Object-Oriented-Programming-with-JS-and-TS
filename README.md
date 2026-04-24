@@ -2498,3 +2498,124 @@ console.log(salad.ingredients); // Should output ["lettuce", "croutons", "cheese
 Caesar
 [ "lettuce", "croutons", "cheese" ]
 ```
+
+### Inheriting Properties & Methods:
+
+When a class extends another class, it inherits all the properties and methods from the parent class, meaning that the child classes automatically have access to everything defined in the parent class.
+
+#### Basic Syntax:
+
+TypeScript:
+
+```ts
+class Animal {
+  public name: string;
+  public age: number;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  eat(): string {
+    return `${this.name} is eating`;
+  }
+  
+  sleep(): string {
+    return `${this.name} is sleeping`;
+  }
+}
+
+class Dog extends Animal {
+  public breed: string;
+  constructor(name: string, age: number, breed: string) {
+    super(name, age);
+    this.breed = breed;
+  }
+}
+```
+
+JavaScript:
+
+```js
+class Animal {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  eat() {
+    return `${this.name} is eating`;
+  }
+  
+  sleep() {
+    return `${this.name} is sleeping`;
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, age, breed) {
+    super(name, age);
+    this.breed = breed;
+  }
+}
+```
+
+When you create an instance of the class `Dog`, when we use the `eat()` and `sleep()` methods from the parent class, the program would still run, even though the methods are not in the child class.
+
+```js
+const rex = new Dog("Rex", 3, "German Shepherd");
+
+// Calling all methods
+console.log(rex.eat());  // Outputs: Rex is eating
+console.log(rex.sleep()); // Outputs: Rex is sleeping
+
+// Accessing All Properties:
+console.log(rex.name);  // Outputs: Rex
+console.log(rex.age);   // Outputs: 3
+console.log(rex.breed); // Outputs: German Shepherd
+```
+
+#### Example of Usage (JS ONLY):
+
+desserts.js:
+
+```js
+export class Dessert {
+  constructor(name, calories) {
+    this.name = name;
+    this.calories = calories;
+  }
+  
+  describe() {
+    return `${this.name} has ${this.calories} calories`;
+  }
+}
+
+class Cake extends Dessert {
+  constructor(name, calories, flavor) {
+    super(name, calories);
+    this.flavor = flavor;
+  }
+  addCandles() { return `Added candles to ${this.name}!`; };
+}
+```
+
+main.js:
+
+```js
+import { Dessert } from './desserts.js';
+import { Cake } from './desserts.js';
+
+const myCake = new Cake("Birthday Cake", 300, "Chocolate");
+console.log(myCake.describe());   // Should output "Birthday Cake has 300 calories"
+console.log(myCake.flavor);       // Should output "Chocolate"
+console.log(myCake.addCandles()); // Should output "Added candles to Birthday Cake!"
+```
+
+##### Result:
+
+```
+Birthday Cake has 300 calories
+Chocolate
+Added candles to Birthday Cake!
+```
