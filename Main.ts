@@ -342,27 +342,43 @@
 // console.log(myManager.name);      // "Sarah"
 // console.log(myManager.department); // "Engineering"
 
-class Animal {
-  public name: string;
-  public age: number;
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
+// class Animal {
+//   public name: string;
+//   public age: number;
+//   constructor(name: string, age: number) {
+//     this.name = name;
+//     this.age = age;
+//   }
   
-  eat(): string {
-    return `${this.name} is eating`;
-  }
+//   eat(): string {
+//     return `${this.name} is eating`;
+//   }
   
-  sleep(): string {
-    return `${this.name} is sleeping`;
-  }
-}
+//   sleep(): string {
+//     return `${this.name} is sleeping`;
+//   }
+// }
 
-class Dog extends Animal {
-  public breed: string;
-  constructor(name: string, age: number, breed: string) {
-    super(name, age);
-    this.breed = breed;
+// class Dog extends Animal {
+//   public breed: string;
+//   constructor(name: string, age: number, breed: string) {
+//     super(name, age);
+//     this.breed = breed;
+//   }
+// }
+
+export class Calculator {
+  public value: number;
+  constructor(initialValue: number) {
+    this.value = initialValue;
+  }
+  
+  add(number: number): number {
+    this.value += number;
+    return this.value;
+  }
+  static multiply(num1: number, num2: number): number {
+    return num1 * num2;
+  // Do NOT use this (static methods don't have instance data)
   }
 }

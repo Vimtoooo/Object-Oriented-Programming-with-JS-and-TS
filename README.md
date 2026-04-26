@@ -2634,7 +2634,7 @@ When storing your class files, keep them inside the `src` folder as shown below:
 ```text
 my-project/
 └── src/
-    ├── models/
+    ├── models/         ← classes folder
     │   └── User.js
     ├── services/
     │   └── AuthService.js
@@ -2748,4 +2748,126 @@ project-root/
 ├── package.json
 ├── tsconfig.json             ← tool config
 └── README.md
+```
+
+## Static Methods & Properties:
+
+### Class-Level Vs. Instance-Level:
+
+In JavaScript classes, there are two distinct levels of properties and methods:
+
+1. **Instance-Level**: Properties and methods that belong to each individual object created from the class.
+2. **Class-Level**: Properties and methods that belong to the class itself, not to instances.
+
+#### Basic Syntax (JS ONLY):
+
+##### Instance-Level Members:
+
+```js
+class Car {
+  constructor(make) {
+    this.make = make;
+  }
+  
+  drive() {
+    return `The ${this.make} is driving`;
+  }
+}
+
+// Create an object from the 'Car' class
+const myCar = new Car("Toyota");
+console.log(myCar.drive()); // Outputs: "The Toyota is driving"
+```
+
+Each and every instance gets its own copy of the `drive()` method, being able to access its own properties using the `this` keyword.
+
+##### Class-Level Members:
+
+```js
+class Car {
+  constructor(make) {
+    this.make = make;
+  }
+  
+  drive() {
+    return `The ${this.make} is driving`;
+  }
+  
+  static compareModels(car1, car2) {
+    return `Comparing ${car1.make} with ${car2.make}`;
+  }
+}
+
+const car1 = new Car("Toyota");
+const car2 = new Car("Honda");
+
+console.log(Car.compareModels(car1, car2)); // Outputs: "Comparing Toyota with Honda"
+
+// Trying to call a static method on an instance will raise an error:
+car1.compareModels(car1, car2); // Error: car1.compareModels is not a function
+```
+
+For this example, the `compareModels()` is indeed a **static method**, or in other words, an **utility method**. We primarily use the `static` keyword in front of the method name to create a method that belongs to the class itself, not to the instance. However, instances cannot call this method, resulting in an error.
+
+#### Example of Usage:
+
+calculator.js:
+
+TypeScript:
+
+```ts
+export class Calculator {
+  public value: number;
+  constructor(initialValue: number) {
+    this.value = initialValue;
+  }
+  
+  add(number: number): number {
+    this.value += number;
+    return this.value;
+  }
+  static multiply(num1: number, num2: number): number {
+    return num1 * num2;
+  // Do NOT use this (static methods don't have instance data)
+  }
+}
+```
+
+JavaScript:
+
+```js
+export class Calculator {
+  constructor(initialValue) {
+    this.value = initialValue;
+  }
+  
+  add(number) {
+    this.value += number;
+    return this.value;
+  }
+  static multiply(num1, num2) {
+    return num1 * num2;
+  // Do NOT use this (static methods don't have instance data)
+  }
+}
+```
+
+main.js:
+
+```js
+import { Calculator } from './calculator.js';
+
+
+const calc = new Calculator(5);             // Creates calculator with value = 5
+const result1 = calc.add(3);                // Should add 3 → 5 + 3 = 8
+const result2 = Calculator.multiply(4, 6);  // Should multiply 4 × 6 = 24
+console.log(result1);                       // Expected: 8
+console.log(result2);                       // Expected: 24
+```
+
+##### Result:
+
+```
+8
+24
 ```
