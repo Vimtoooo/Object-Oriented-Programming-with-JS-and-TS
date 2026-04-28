@@ -392,3 +392,36 @@
 //     Counter.count++;
 //   }
 // }
+
+class Animal {
+  public name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  
+  speak(): string {
+    return `${this.name} makes a sound`;
+  }
+}
+
+class Dog extends Animal {
+  speak(): string {
+    return `${this.name} barks`;
+  }
+}
+
+class Cat extends Animal {
+  speak(): string {
+    return `${this.name} meows`;
+  }
+}
+
+const animal = new Animal("Some animal");
+const dog = new Dog("Rex");
+const cat = new Cat("Whiskers");
+
+const listOfObjects: Animal[] = [animal, dog, cat];
+
+for (let entity of listOfObjects) {
+  console.log(entity.speak());
+};

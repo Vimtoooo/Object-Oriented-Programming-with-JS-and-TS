@@ -2998,3 +2998,144 @@ console.log(StringUtils.capitalize("programming"));
 ```
 Programming
 ```
+
+## Polymorphism:
+
+### What is Polymorphism?
+
+Polymorphism, which simply means "many forms", represents the manipulation of a diversity of objects in OOP where these class objects respond to the same methods, but all in distinct ways.
+
+In JavaScript, polymorphism is most commonly seen when child classes override methods from parent classes.
+
+#### Basic Syntax:
+
+Let's create a simple parent class with a `speak()` method, then create child classes which will inherit from the parent:
+
+TypeScript:
+
+```ts
+class Animal {
+  public name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  
+  speak(): string {
+    return `${this.name} makes a sound`;
+  }
+}
+
+class Dog extends Animal {
+  speak(): string {
+    return `${this.name} barks`;
+  }
+}
+
+class Cat extends Animal {
+  speak(): string {
+    return `${this.name} meows`;
+  }
+}
+```
+
+JavaScript:
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    return `${this.name} makes a sound`;
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    return `${this.name} barks`;
+  }
+}
+
+class Cat extends Animal {
+  speak() {
+    return `${this.name} meows`;
+  }
+}
+```
+
+If you have noticed, each child class implements the `speak()` method differently, this is polymorphism in play...
+
+All that we have to do is instantiate a few objects and call the same method on each:
+
+TypeScript:
+
+```ts
+const animal = new Animal("Some animal");
+const dog = new Dog("Rex");
+const cat = new Cat("Whiskers");
+
+const listOfObjects: Animal[] = [animal, dog, cat];
+
+for (let entity of listOfObjects) {
+  console.log(entity.speak());
+};
+```
+
+JavaScript:
+
+```js
+const animal = new Animal("Some animal");
+const dog = new Dog("Rex");
+const cat = new Cat("Whiskers");
+
+const listOfObjects = [animal, dog, cat];
+
+for (let entity of listOfObjects) {
+  console.log(entity.speak());
+};
+```
+
+Output:
+
+```
+Some animal makes a sound
+Rex barks
+Whiskers meows
+```
+
+All of the three animal objects responded to the same method in different ways.
+
+#### Example of Usage (JS ONLY):
+
+```js
+// Parent Notification class here
+class Notification {
+  send(message) {
+    return `Sending '${message}' via Notification`;
+  }
+}
+
+// SMSNotification class that extends Notification
+class SMSNotification extends Notification {
+  send(message) { return `Sending '${message}' via SMS`; }
+}
+
+// EmailNotification class that extends Notification
+export class EmailNotification extends Notification {
+  send(message) { return `Sending '${message}' via Email`; }
+}
+
+const email = new EmailNotification();
+const sms = new SMSNotification();
+
+console.log(email.send("Hello!"));  // Should use EmailNotification's send()
+console.log(sms.send("Hello!"));    // Should use SMSNotification's send()
+```
+
+##### Result:
+
+```
+Sending 'Hello!' via Email
+Sending 'Hello!' via SMS
+```
