@@ -2941,3 +2941,60 @@ console.log(MathConstants.E);         // Should output 2.71828
 3.14159
 2.71828
 ```
+
+### Static Utility Methods:
+
+Static methods are commonly used for utility purposes, where once again, the functions would belong to the class itself rather than to instances of the class. They're useful for functions that don't require access to instance-specific data.
+
+#### Basic Syntax (JS ONLY):
+
+```js
+// Create a class with a static utility method:
+class MathHelper {
+  // Define a static method
+  static square(number) {
+    return number * number;
+  }
+}
+
+// Call the static method using the class name, without creating an instance
+const result = MathHelper.square(5);
+console.log(result); // 25
+```
+
+> [!NOTE]:
+> Notice we didn't need to create a new instance with `new MathHelper()`. Static methods are perfect for utility functions that perform operations without needing instance data.
+
+#### Example of Usage (JS ONLY):
+
+stringUtils.js:
+
+```js
+export class StringUtils {
+// This method should take a string as an argument and return the same string with the first letter capitalized
+    static capitalize(str) {
+        if (str || str.length > 0) {
+            const firstChar = str.charAt(0);
+            const upperCaseChar = firstChar.toUpperCase();
+            const fullString = upperCaseChar + str.slice(1);
+            return fullString;
+        } else {
+            return "";
+        }
+    }
+}
+```
+
+main.js:
+
+```js
+import { StringUtils } from './stringUtils.js';
+
+console.log(StringUtils.capitalize("programming"));
+```
+
+##### Result:
+
+```
+Programming
+```

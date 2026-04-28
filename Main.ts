@@ -383,12 +383,12 @@
 //   }
 // }
 
-class Counter {
-  // Define a static property
-  static count = 0;
+// class Counter {
+//   // Define a static property
+//   static count = 0;
   
-  constructor() {
-    // Increment the static count each time a new instance is created
-    Counter.count++;
-  }
-}
+//   constructor() {
+//     // Increment the static count each time a new instance is created
+//     Counter.count++;
+//   }
+// }
