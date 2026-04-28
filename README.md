@@ -2871,3 +2871,73 @@ console.log(result2);                       // Expected: 24
 8
 24
 ```
+
+### Static Properties:
+
+Static properties are **public properties or class attributes that belong to the class itself**, not to instances of the class. They are shared among all instances.
+
+#### Basic Syntax (JS ONLY):
+
+```js
+class Counter {
+  // Define a static property
+  static count = 0;
+  
+  constructor() {
+    // Increment the static count each time a new instance is created
+    Counter.count++;
+  }
+}
+```
+
+Then you would access the static property using the class name:
+
+```js
+console.log(Counter.count); // 0
+
+// Create some instances
+const counter1 = new Counter();
+const counter2 = new Counter();
+
+console.log(Counter.count); // 2
+```
+
+#### Why use Static Properties?
+
+Static properties are useful for values that should be shared across all instances or for class-level constants.
+
+```js
+class MathConstants {
+  static GOLDEN_RATIO = 1.61803;
+}
+
+console.log(MathConstants.PI); // 3.14159
+```
+
+#### Example of Usage (JS ONLY):
+
+constants.js:
+
+```js
+class MathConstants {
+  static GOLDEN_RATIO = 1.61803;
+}
+
+console.log(MathConstants.PI); // 3.14159
+```
+
+main.js:
+
+```js
+import { MathConstants } from './constants.js';
+
+console.log(MathConstants.PI);        // Should output 3.14159
+console.log(MathConstants.E);         // Should output 2.71828
+```
+
+##### Result:
+
+```
+3.14159
+2.71828
+```

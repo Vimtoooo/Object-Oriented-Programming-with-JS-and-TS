@@ -367,18 +367,28 @@
 //   }
 // }
 
-export class Calculator {
-  public value: number;
-  constructor(initialValue: number) {
-    this.value = initialValue;
-  }
+// export class Calculator {
+//   public value: number;
+//   constructor(initialValue: number) {
+//     this.value = initialValue;
+//   }
   
-  add(number: number): number {
-    this.value += number;
-    return this.value;
-  }
-  static multiply(num1: number, num2: number): number {
-    return num1 * num2;
-  // Do NOT use this (static methods don't have instance data)
+//   add(number: number): number {
+//     this.value += number;
+//     return this.value;
+//   }
+//   static multiply(num1: number, num2: number): number {
+//     return num1 * num2;
+//   // Do NOT use this (static methods don't have instance data)
+//   }
+// }
+
+class Counter {
+  // Define a static property
+  static count = 0;
+  
+  constructor() {
+    // Increment the static count each time a new instance is created
+    Counter.count++;
   }
 }
