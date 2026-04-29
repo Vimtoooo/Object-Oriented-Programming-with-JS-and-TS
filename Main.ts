@@ -426,22 +426,69 @@
 //   console.log(entity.speak());
 // };
 
-class Vehicle {
-  start(): string {
-    return "Vehicle starting...";
+// class Vehicle {
+//   start(): string {
+//     return "Vehicle starting...";
+//   }
+// }
+
+// // Child class that extends the parent:
+// class Car extends Vehicle {
+//   // This OVERRIDES Vehicle's start() method
+//   start(): string {
+//     return "Car engine roaring to life!";
+//   }
+// }
+
+// const vehicle = new Vehicle();
+// const car = new Car();
+
+// console.log(vehicle.start());      // "Vehicle starting..." (original)
+// console.log(car.start());          // "Car engine roaring to life!" (overridden)
+
+// Parent class:
+class Animal {
+  makeSound(): string {
+    return "Generic animal sound";
   }
 }
 
-// Child class that extends the parent:
-class Car extends Vehicle {
-  // This OVERRIDES Vehicle's start() method
-  start(): string {
-    return "Car engine roaring to life!";
+// Child class:
+class Dog extends Animal {
+  makeSound(): string {
+    // Call the parent's method first
+    const parentSound = super.makeSound();
+    // Then extend with additional functionality
+    return `${parentSound}, but also Woof!`;
   }
 }
 
-const vehicle = new Vehicle();
-const car = new Car();
+// Initialize an instance of the child class:
+const myDog = new Dog();
+console.log(myDog.makeSound());
+// Output: "Generic animal sound, but also Woof!"
 
-console.log(vehicle.start());      // "Vehicle starting..." (original)
-console.log(car.start());          // "Car engine roaring to life!" (overridden)
+class Shape {
+  calculateArea(): string {
+    return "Calculating area...";
+  }
+}
+
+class Rectangle extends Shape {
+  public width: number;
+  public height: number;
+  
+  constructor(width: number, height: number): string {
+    super();
+    this.width = width;
+    this.height = height;
+  }
+  
+  // Override this method using super
+  calculateArea() {
+    // Call the parent's calculateArea() method using super and store the result
+    const process: string = super.calculateArea();
+    const rectangleArea: number = this.width * this.height;
+    return `${process} Rectangle area: ${rectangleArea}`;
+  }
+}

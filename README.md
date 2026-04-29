@@ -3140,7 +3140,7 @@ Sending 'Hello!' via Email
 Sending 'Hello!' via SMS
 ```
 
-### Overriding inherited Methods:
+### Overriding Inherited Methods:
 
 Method overriding is when a child class provides its own implementation of a method that is inherited from a parent class. The child's method will replace the parent's version, but that does not mean that the parent's version cannot be used!
 
@@ -3239,4 +3239,102 @@ console.log(myCircle.calculateArea());
 
 ```
 78.53981633974483
+```
+
+### Using 'Super':
+
+After overriding a particular method, you can still access the parent's original version using this simple syntax: `super.methodName()`. This lets you **extend or modify** parent behavior instead of completely replacing it.
+
+#### Basic Syntax (JS ONLY):
+
+```js
+class Animal {
+  makeSound() {
+    return "Generic animal sound";
+  }
+}
+
+class Dog extends Animal {
+  makeSound() {
+    // Call the parent's method first
+    const parentSound = super.makeSound();
+    // Then extend with additional functionality
+    return `${parentSound}, but also Woof!`;
+  }
+}
+
+const myDog = new Dog();
+console.log(myDog.makeSound());
+// Output: "Generic animal sound, but also Woof!"
+```
+
+The `super` keyword allows you to call the parent class's methods while still adding your own functionality in the child class.
+
+#### Example of Usage:
+
+TypeScript:
+
+```ts
+class Shape {
+  calculateArea(): string {
+    return "Calculating area...";
+  }
+}
+
+class Rectangle extends Shape {
+  public width: number;
+  public height: number;
+  
+  constructor(width: number, height: number): string {
+    super();
+    this.width = width;
+    this.height = height;
+  }
+  
+  // Override this method using super
+  calculateArea() {
+    // Call the parent's calculateArea() method using super and store the result
+    const process: string = super.calculateArea();
+    const rectangleArea: number = this.width * this.height;
+    return `${process} Rectangle area: ${rectangleArea}`;
+  }
+}
+
+const rectangle = new Rectangle(5, 10);
+console.log(rectangle.calculateArea()); // Expected: "Calculating area... Rectangle area: 50"
+```
+
+JavaScript:
+
+```js
+class Shape {
+  calculateArea() {
+    return "Calculating area...";
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(width, height) {
+    super();
+    this.width = width;
+    this.height = height;
+  }
+  
+  // Override this method using super
+  calculateArea() {
+    // Call the parent's calculateArea() method using super and store the result
+    const process = super.calculateArea();
+    const rectangleArea = this.width * this.height;
+    return `${process} Rectangle area: ${rectangleArea}`;
+  }
+}
+
+const rectangle = new Rectangle(5, 10);
+console.log(rectangle.calculateArea()); // Expected: "Calculating area... Rectangle area: 50"
+```
+
+##### Result:
+
+```
+Calculating area... Rectangle area: 50
 ```
