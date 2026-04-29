@@ -3139,3 +3139,104 @@ console.log(sms.send("Hello!"));    // Should use SMSNotification's send()
 Sending 'Hello!' via Email
 Sending 'Hello!' via SMS
 ```
+
+### Overriding inherited Methods:
+
+Method overriding is when a child class provides its own implementation of a method that is inherited from a parent class. The child's method will replace the parent's version, but that does not mean that the parent's version cannot be used!
+
+#### Basic Syntax:
+
+TypeScript:
+
+```ts
+// Parent class with a method:
+class Vehicle {
+  start(): string {
+    return "Vehicle starting...";
+  }
+}
+
+// Child class that extends the parent:
+class Car extends Vehicle {
+  // This OVERRIDES Vehicle's start() method
+  start(): string {
+    return "Car engine roaring to life!";
+  }
+}
+```
+
+JavaScript:
+
+```js
+// Parent class with a method:
+class Vehicle {
+  start(): string {
+    return "Vehicle starting...";
+  }
+}
+
+// Child class that extends the parent:
+class Car extends Vehicle {
+  // This OVERRIDES Vehicle's start() method
+  start(): string {
+    return "Car engine roaring to life!";
+  }
+}
+```
+
+Then, we use the classes:
+
+```js
+const vehicle = new Vehicle();
+const car = new Car();
+
+console.log(vehicle.start());      // "Vehicle starting..." (original)
+console.log(car.start());          // "Car engine roaring to life!" (overridden)
+```
+
+#### Key Rules for Overriding:
+
+1. Same method name as parent
+2. Sam or compatible parameters
+3. Child's version is called on child objects
+4. No special keywords needed, just define the method
+
+#### Example of Usage (JS ONLY):
+
+shapes.js:
+
+```js
+export class Shape {
+  calculateArea() {
+    return 0;
+  }
+}
+
+export class Circle extends Shape {
+  constructor(radius) {
+    super();
+    this.radius = radius;
+  }
+  
+  calculateArea() {
+    return Math.PI * this.radius * this.radius;
+  }
+}
+```
+
+main.js:
+
+```js
+import { Shape } from './shapes.js';
+import { Circle } from './shapes.js';
+
+// Test your implementation
+const myCircle = new Circle(5);
+console.log(myCircle.calculateArea());
+```
+
+##### Result:
+
+```
+78.53981633974483
+```

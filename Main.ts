@@ -393,35 +393,55 @@
 //   }
 // }
 
-class Animal {
-  public name: string;
-  constructor(name: string) {
-    this.name = name;
-  }
+// class Animal {
+//   public name: string;
+//   constructor(name: string) {
+//     this.name = name;
+//   }
   
-  speak(): string {
-    return `${this.name} makes a sound`;
+//   speak(): string {
+//     return `${this.name} makes a sound`;
+//   }
+// }
+
+// class Dog extends Animal {
+//   speak(): string {
+//     return `${this.name} barks`;
+//   }
+// }
+
+// class Cat extends Animal {
+//   speak(): string {
+//     return `${this.name} meows`;
+//   }
+// }
+
+// const animal = new Animal("Some animal");
+// const dog = new Dog("Rex");
+// const cat = new Cat("Whiskers");
+
+// const listOfObjects: Animal[] = [animal, dog, cat];
+
+// for (let entity of listOfObjects) {
+//   console.log(entity.speak());
+// };
+
+class Vehicle {
+  start(): string {
+    return "Vehicle starting...";
   }
 }
 
-class Dog extends Animal {
-  speak(): string {
-    return `${this.name} barks`;
+// Child class that extends the parent:
+class Car extends Vehicle {
+  // This OVERRIDES Vehicle's start() method
+  start(): string {
+    return "Car engine roaring to life!";
   }
 }
 
-class Cat extends Animal {
-  speak(): string {
-    return `${this.name} meows`;
-  }
-}
+const vehicle = new Vehicle();
+const car = new Car();
 
-const animal = new Animal("Some animal");
-const dog = new Dog("Rex");
-const cat = new Cat("Whiskers");
-
-const listOfObjects: Animal[] = [animal, dog, cat];
-
-for (let entity of listOfObjects) {
-  console.log(entity.speak());
-};
+console.log(vehicle.start());      // "Vehicle starting..." (original)
+console.log(car.start());          // "Car engine roaring to life!" (overridden)
