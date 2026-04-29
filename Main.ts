@@ -494,8 +494,11 @@
 // }
 
 import { Shape } from "./Projects/Shape_Renderer/Shape.ts";
+import { Circle } from "./Projects/Shape_Renderer/Circle.ts";
 
+// Tests
+const basicShape = new Shape('red');
+console.log(basicShape.describe()); // "A red shape"
 
-// Test the Shape class
-const myShape = new Shape('blue');
-console.log(myShape.describe()); // Outputs: "A blue shape"
+const myCircle = new Circle('blue', 10);
+console.log(myCircle.describe()); // Should output: "A blue shape"
