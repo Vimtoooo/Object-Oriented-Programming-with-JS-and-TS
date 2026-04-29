@@ -446,49 +446,56 @@
 // console.log(vehicle.start());      // "Vehicle starting..." (original)
 // console.log(car.start());          // "Car engine roaring to life!" (overridden)
 
-// Parent class:
-class Animal {
-  makeSound(): string {
-    return "Generic animal sound";
-  }
-}
+// // Parent class:
+// class Animal {
+//   makeSound(): string {
+//     return "Generic animal sound";
+//   }
+// }
 
-// Child class:
-class Dog extends Animal {
-  makeSound(): string {
-    // Call the parent's method first
-    const parentSound = super.makeSound();
-    // Then extend with additional functionality
-    return `${parentSound}, but also Woof!`;
-  }
-}
+// // Child class:
+// class Dog extends Animal {
+//   makeSound(): string {
+//     // Call the parent's method first
+//     const parentSound = super.makeSound();
+//     // Then extend with additional functionality
+//     return `${parentSound}, but also Woof!`;
+//   }
+// }
 
-// Initialize an instance of the child class:
-const myDog = new Dog();
-console.log(myDog.makeSound());
-// Output: "Generic animal sound, but also Woof!"
+// // Initialize an instance of the child class:
+// const myDog = new Dog();
+// console.log(myDog.makeSound());
+// // Output: "Generic animal sound, but also Woof!"
 
-class Shape {
-  calculateArea(): string {
-    return "Calculating area...";
-  }
-}
+// class Shape {
+//   calculateArea(): string {
+//     return "Calculating area...";
+//   }
+// }
 
-class Rectangle extends Shape {
-  public width: number;
-  public height: number;
+// class Rectangle extends Shape {
+//   public width: number;
+//   public height: number;
+
+//   constructor(width: number, height: number) {
+//     super();
+//     this.width = width;
+//     this.height = height;
+//   }
   
-  constructor(width: number, height: number): string {
-    super();
-    this.width = width;
-    this.height = height;
-  }
-  
-  // Override this method using super
-  calculateArea() {
-    // Call the parent's calculateArea() method using super and store the result
-    const process: string = super.calculateArea();
-    const rectangleArea: number = this.width * this.height;
-    return `${process} Rectangle area: ${rectangleArea}`;
-  }
-}
+//   // Override this method using super
+//   calculateArea() {
+//     // Call the parent's calculateArea() method using super and store the result
+//     const process: string = super.calculateArea();
+//     const rectangleArea: number = this.width * this.height;
+//     return `${process} Rectangle area: ${rectangleArea}`;
+//   }
+// }
+
+import { Shape } from "./Projects/Shape_Renderer/Shape.ts";
+
+
+// Test the Shape class
+const myShape = new Shape('blue');
+console.log(myShape.describe()); // Outputs: "A blue shape"

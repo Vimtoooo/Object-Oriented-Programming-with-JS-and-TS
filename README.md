@@ -3285,7 +3285,7 @@ class Rectangle extends Shape {
   public width: number;
   public height: number;
   
-  constructor(width: number, height: number): string {
+  constructor(width: number, height: number) {
     super();
     this.width = width;
     this.height = height;
@@ -3338,3 +3338,4 @@ console.log(rectangle.calculateArea()); // Expected: "Calculating area... Rectan
 ```
 Calculating area... Rectangle area: 50
 ```
+
