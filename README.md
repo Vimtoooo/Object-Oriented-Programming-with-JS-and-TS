@@ -3339,3 +3339,148 @@ console.log(rectangle.calculateArea()); // Expected: "Calculating area... Rectan
 Calculating area... Rectangle area: 50
 ```
 
+## Getters & Setters:
+
+### The 'get' and 'set' Keyword:
+
+Getters and setters are **special methods** that may look like property names, however, they either retrieve or modify the property values of an instance attribute. They give control over how properties are accessed and modified.
+
+#### Basic Syntax:
+
+Let us create a `Person` class for this reference:
+
+TypeScript:
+
+```ts
+class Person {
+
+  private _firstName: string;
+  private _lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+  }
+  
+  // Getter for fullName
+  get fullName() {
+    return `${this._firstName} ${this._lastName}`;
+  }
+  
+  // Setter for fullName
+  set fullName(value) {
+    const parts = value.split(' ');
+    this._firstName = parts[0];
+    this._lastName = parts[1];
+  }
+}
+```
+
+JavaScript:
+
+```js
+class Person {
+  constructor(firstName, lastName) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+  }
+  
+  // Getter for fullName
+  get fullName() {
+    return `${this._firstName} ${this._lastName}`;
+  }
+  
+  // Setter for fullName
+  set fullName(value) {
+    const parts = value.split(' ');
+    this._firstName = parts[0];
+    this._lastName = parts[1];
+  }
+}
+```
+
+Now, you can use these methods just like regular properties!
+
+```js
+// Using the 'Get' Method:
+console.log(myPerson.fullName) // "Bob Marley"
+
+// Using the 'Set' Method:
+myPerson.fullName = "John Smith";
+console.log(myPerson.fullName) // "John Smith"
+```
+
+##### Output:
+
+```
+Bob Marley
+John Smith
+```
+
+#### Example of Usage:
+
+user.ts:
+
+```ts
+export class User {
+
+  public name: string;
+  private _age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this._age = age;  // Store age privately
+  }
+  
+  get age() { return this._age; }
+  set age(newAge) {
+    if (0 <= newAge && newAge <= 120) this._age = newAge;
+    else console.log("Invalid age!");
+  }
+}
+```
+
+user.js:
+
+```js
+export class User {
+  name = "";
+  #age = 0;
+
+  constructor(name, age) {
+    this.name = name;
+    this._age = age;  // Store age privately
+  }
+  
+  get age() { return this._age; }
+  set age(newAge) {
+    if (0 <= newAge && newAge <= 120) this._age = newAge;
+    else console.log("Invalid age!");
+  }
+}
+```
+
+main.js:
+
+```js
+import { User } from './user.js';
+
+const user = new User("Alice", 25);
+console.log(user.age);      // Should output 25
+
+user.age = 30;
+console.log(user.age);      // Should output 30
+
+user.age = 150;             // Should show "Invalid age!"
+console.log(user.age);      // Should still output 30 (unchanged)
+```
+
+##### Result:
+
+```
+25
+30
+Invalid age!
+30
+```
+

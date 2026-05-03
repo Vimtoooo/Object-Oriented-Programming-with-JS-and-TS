@@ -175,3 +175,19 @@
 // var myUser = new User("Brad", "BigBrad@example.com");
 // console.log(myUser.getName()); // "Brad"
 // console.log(myUser.getEmail()); // "BigBrad@example.com"
+
+export class User {
+  name = "";
+  #age = 0;
+
+  constructor(name, age) {
+    this.name = name;
+    this._age = age;  // Store age privately
+  }
+  
+  get age() { return this._age; }
+  set age(newAge) {
+    if (0 <= newAge && newAge <= 120) this._age = newAge;
+    else console.log("Invalid age!");
+  }
+}

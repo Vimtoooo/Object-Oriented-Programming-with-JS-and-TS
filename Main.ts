@@ -493,12 +493,61 @@
 //   }
 // }
 
-import { Shape } from "./Projects/Shape_Renderer/Shape.ts";
-import { Circle } from "./Projects/Shape_Renderer/Circle.ts";
+// import { Shape } from "./Projects/Shape_Renderer/Shape.ts";
+// import { Circle } from "./Projects/Shape_Renderer/Circle.ts";
 
-// Tests
-const basicShape = new Shape('red');
-console.log(basicShape.describe()); // "A red shape"
+// // Tests
+// const basicShape = new Shape('red');
+// console.log(basicShape.describe()); // "A red shape"
 
-const myCircle = new Circle('blue', 10);
-console.log(myCircle.describe()); // Should output: "A blue shape"
+// const myCircle = new Circle('blue', 10);
+// console.log(myCircle.describe()); // Should output: "A blue shape"
+
+class Person {
+
+  private _firstName: string;
+  private _lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+  }
+  
+  // Getter for fullName
+  get fullName() {
+    return `${this._firstName} ${this._lastName}`;
+  }
+  
+  // Setter for fullName
+  set fullName(value) {
+    const parts = value.split(' ');
+    this._firstName = parts[0];
+    this._lastName = parts[1];
+  }
+}
+
+const myPerson: Person = new Person("Bob", "Marley");
+
+// Using the 'Get' Method:
+console.log(myPerson.fullName) // "Bob Marley"
+
+// Using the 'Set' Method:
+myPerson.fullName = "John Smith";
+console.log(myPerson.fullName) // "John Smith"
+
+export class User {
+
+  public name: string;
+  private _age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this._age = age;  // Store age privately
+  }
+  
+  get age() { return this._age; }
+  set age(newAge) {
+    if (0 <= newAge && newAge <= 120) this._age = newAge;
+    else console.log("Invalid age!");
+  }
+}
