@@ -3484,3 +3484,64 @@ Invalid age!
 30
 ```
 
+### Computed Properties:
+
+Computed properties are **getter methods that calculate and return a value** instead of return the stored data from a particular instance attribute.
+
+#### Basic Syntax (JS ONLY):
+
+For this example, we have an object with a regular property:
+
+```js
+const circle = {
+  radius: 5
+};
+```
+
+That we then, add a computed property using a getter:
+
+```js
+const circle = {
+  radius: 5,
+  get diameter() {
+    return this.radius * 2;
+  }
+};
+```
+
+We can access the computed property:
+
+```js
+console.log(circle.diameter); // Outputs: 10
+
+// Also, updating the property will automatically update the computed property as well!
+circle.radius = 10;
+console.log(circle.diameter); // Outputs: 20
+```
+
+Overall, computed properties are useful when a property's value depends on other properties requires any calculation.
+
+#### Example of Usage (JS ONLY):
+
+```js
+class Rectangle {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+  
+  get area() { return this.width * this.height; }
+  get perimeter() { return (this.width * 2) + (this.height * 2); }
+}
+
+const rect = new Rectangle(5, 10);
+console.log(`Area: ${rect.area}`);        // Should output "Area: 50"
+console.log(`Perimeter: ${rect.perimeter}`); // Should output "Perimeter: 30"
+```
+
+##### Result:
+
+```
+Area: 50
+Perimeter: 30
+```
