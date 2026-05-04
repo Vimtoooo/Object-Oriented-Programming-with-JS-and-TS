@@ -3726,3 +3726,172 @@ Invalid balance
 Invalid balance
 100
 ```
+
+## Composition Vs Inheritance:
+
+### The "Has-a" Vs "Is-a":
+
+In OOP, there are two types of relationships between objects: Composition ("Has-a") and Inheritance ("Is-a"). While **inheritance creates parent-child hierarchies**, **composition builds objects by combining smaller, focused components** and storing class references inside instance attributes.
+
+#### Basic Syntax:
+
+Let's review both relationships with different class examples.
+
+##### The "Is-a" Relationship (Inheritance):
+
+TypeScript:
+
+```ts
+// Parent Class
+class Animal {
+  public name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+  
+  eat(): void {
+    console.log(`${this.name} is eating.`);
+  }
+}
+
+// Dog "is-a" Animal - inheritance relationship
+class Dog extends Animal {
+  bark(): void {
+    console.log(`${this.name} says woof!`);
+  }
+}
+```
+
+JavaScript:
+
+```js
+// Parent Class
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  
+  eat() {
+    console.log(`${this.name} is eating.`);
+  }
+}
+
+// Dog "is-a" Animal - inheritance relationship
+class Dog extends Animal {
+  bark() {
+    console.log(`${this.name} says woof!`);
+  }
+}
+```
+
+##### The "Has-a" Relationship (Composition):
+
+TypeScript:
+
+```ts
+class Engine {
+  start(): void {
+    console.log("Engine started");
+  }
+}
+
+// Car "has-a" Engine - composition relationship
+class Car {
+  public engine: Engine;
+
+  constructor() {
+    this.engine = new Engine(); // Composition
+  }
+  
+  startCar(): void {
+    this.engine.start();
+    console.log("Car is running");
+  }
+}
+```
+
+JavaScript:
+
+```js
+class Engine {
+  start() {
+    console.log("Engine started");
+  }
+}
+
+// Car "has-a" Engine - composition relationship
+class Car {
+  constructor() {
+    this.engine = new Engine(); // Composition
+  }
+  
+  startCar() {
+    this.engine.start();
+    console.log("Car is running");
+  }
+}
+```
+
+#### Key Differences:
+
+To make this topic more simpler to comprehend, think of these two relationships with this terminology:
+
+* **Inheritance ("Is-a")**: A `Dog` IS AN `Animal`.
+* **Composition ("Has-a")**: A `Car` HAS AN `Engine`.
+
+#### Example of Usage (JS ONLY):
+
+computer.js:
+
+```js
+class Processor {
+  constructor(speed) {
+    this.speed = speed;
+  }
+  
+  compute() {
+    console.log(`Processing at ${this.speed} GHz`);
+  }
+}
+
+class Memory {
+  constructor(size) {
+    this.size = size;
+  }
+  
+  load() {
+    console.log(`Loading ${this.size} GB of data`);
+  }
+}
+
+export class Computer {
+  constructor(processorSpeed, memorySize) {
+    this.processor = new Processor(processorSpeed);
+    this.memory = new Memory(memorySize);
+  }
+  
+  start() {
+    console.log('Computer starting up...');
+    this.processor.compute();
+    this.memory.load();
+  }
+}
+```
+
+main.js:
+
+```js
+import { Computer } from './computer.js';
+
+const myComputer = new Computer(3.5, 16);
+myComputer.start();
+```
+
+##### Result:
+
+```
+Computer starting up...
+Processing at 3.5 GHz
+Loading 16 GB of data
+```

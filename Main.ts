@@ -552,57 +552,77 @@
 //   }
 // }
 
-class User {
-  public _name: string;
-  public _age: number;
+// class User {
+//   public _name: string;
+//   public _age: number;
 
-  constructor(name: string, age: number) {
-    this._name = name;
-    this._age = age;
-  }
+//   constructor(name: string, age: number) {
+//     this._name = name;
+//     this._age = age;
+//   }
   
-  get age(): number {
-    return this._age;
-  }
+//   get age(): number {
+//     return this._age;
+//   }
   
-  // Set methods don't require return values!
-  set age(value: number) {
-    // Validate age is a number and within reasonable range
-    if (typeof value !== 'number') {
-      throw new Error('Age must be a number');
-    }
+//   // Set methods don't require return values!
+//   set age(value: number) {
+//     // Validate age is a number and within reasonable range
+//     if (typeof value !== 'number') {
+//       throw new Error('Age must be a number');
+//     }
     
-    if (value < 0 || value > 120) {
-      throw new Error('Age must be between 0 and 120');
-    }
+//     if (value < 0 || value > 120) {
+//       throw new Error('Age must be between 0 and 120');
+//     }
     
-    this._age = value;
+//     this._age = value;
     
-    // Side effect: log when age changes
-    console.log(`Age updated to ${value}`);
+//     // Side effect: log when age changes
+//     console.log(`Age updated to ${value}`);
+//   }
+// }
+
+// export class BankAccount {
+//   public _balance: number;
+//   public _accountName: string;
+
+//   constructor(accountName: string) {
+//     this._balance = 0;
+//     this._accountName = accountName;
+//   }
+  
+//   get balance(): number {
+//     return this._balance;
+//   }
+  
+//   set balance(value: number) {
+//     if (typeof value !== "number" || value < 0) {
+//       console.log("Invalid balance");
+//       return;
+//     }
+    
+//     this._balance = value;
+//     console.log(`Balance updated to $${value}`);
+//   }
+// }
+
+class Engine {
+  start(): void {
+    console.log("Engine started");
   }
 }
 
-export class BankAccount {
-  public _balance: number;
-  public _accountName: string;
+// Car "has-a" Engine - composition relationship
+class Car {
+  public engine: Engine;
 
-  constructor(accountName: string) {
-    this._balance = 0;
-    this._accountName = accountName;
+  constructor() {
+    this.engine = new Engine(); // Composition
   }
   
-  get balance(): number {
-    return this._balance;
-  }
-  
-  set balance(value: number) {
-    if (typeof value !== "number" || value < 0) {
-      console.log("Invalid balance");
-      return;
-    }
-    
-    this._balance = value;
-    console.log(`Balance updated to $${value}`);
+  startCar(): void {
+    this.engine.start();
+    console.log("Car is running");
   }
 }
