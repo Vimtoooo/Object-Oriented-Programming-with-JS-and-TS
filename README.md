@@ -3545,3 +3545,184 @@ console.log(`Perimeter: ${rect.perimeter}`); // Should output "Perimeter: 30"
 Area: 50
 Perimeter: 30
 ```
+
+### Validation and Side Effects:
+
+Getters and setters can do more than just read and write instance attributes, they are capable of validating inputs and triggering any side effects when values change!
+
+#### Basic Syntax:
+
+Let's create a `User` class with validation:
+
+TypeScript:
+
+```ts
+class User {
+  public _name: string;
+  public _age: number;
+
+  constructor(name: string, age: number) {
+    this._name = name;
+    this._age = age;
+  }
+  
+  get age(): number {
+    return this._age;
+  }
+  
+  // Set methods don't require return values!
+  set age(value: number) {
+    // Validate age is a number and within reasonable range
+    if (typeof value !== 'number') {
+      throw new Error('Age must be a number');
+    }
+    
+    if (value < 0 || value > 120) {
+      throw new Error('Age must be between 0 and 120');
+    }
+    
+    this._age = value;
+    
+    // Side effect: log when age changes
+    console.log(`Age updated to ${value}`);
+  }
+}
+```
+
+JavaScript:
+
+```js
+class User {
+  constructor(name, age) {
+    this._name = name;
+    this._age = age;
+  }
+  
+  get age() {
+    return this._age;
+  }
+  
+  set age(value) {
+    // Validate age is a number and within reasonable range
+    if (typeof value !== 'number') {
+      throw new Error('Age must be a number');
+    }
+    
+    if (value < 0 || value > 120) {
+      throw new Error('Age must be between 0 and 120');
+    }
+    
+    this._age = value;
+    
+    // Side effect: log when age changes
+    console.log(`Age updated to ${value}`);
+  }
+}
+```
+
+After defining the `User` class, we can initialize a instance of that class and begin validating with the setter methods:
+
+```js
+const user = new User('Alice', 25);
+
+// This works
+user.age = 30;  // Logs: "Age updated to 30"
+
+// This throws an error
+user.age = -5;  // Error: Age must be between 0 and 120
+
+// This also throws an error
+user.age = "thirty";  // Error: Age must be a number
+```
+
+##### Importance of Validation:
+
+* **Validation**: Checking if a value is valid before storing it.
+* **Side Effects**: Additional actions that happen when a property changes.
+
+#### Example of Usage:
+
+account.ts:
+
+```ts
+export class BankAccount {
+  public _balance: number;
+  public _accountName: string;
+
+  constructor(accountName: string) {
+    this._balance = 0;
+    this._accountName = accountName;
+  }
+  
+  get balance(): number {
+    return this._balance;
+  }
+  
+  set balance(value: number) {
+    if (typeof value !== "number" || value < 0) {
+      console.log("Invalid balance");
+      return;
+    }
+    
+    this._balance = value;
+    console.log(`Balance updated to $${value}`);
+  }
+}
+```
+
+account.js:
+
+```js
+export class BankAccount {
+  constructor(accountName) {
+    this._balance = 0;
+    this._accountName = accountName;
+  }
+  
+  get balance() {
+    return this._balance;
+  }
+  
+  set balance(value) {
+    if (typeof value !== "number" || value < 0) {
+      console.log("Invalid balance");
+      return;
+    }
+    
+    this._balance = value;
+    console.log(`Balance updated to $${value}`);
+  }
+}
+```
+
+main.js:
+
+```js
+import { BankAccount } from './account.js';
+
+// Test cases
+const account = new BankAccount("Savings");
+
+// Test 1: Valid balance
+account.balance = 100;
+console.log(account.balance);
+
+// Test 2: Invalid balance (negative)
+account.balance = -50;
+console.log(account.balance);
+
+// Test 3: Invalid balance (not a number)
+account.balance = "abc";
+console.log(account.balance);
+```
+
+##### Result:
+
+```
+Balance updated to $100
+100
+Invalid balance
+100
+Invalid balance
+100
+```

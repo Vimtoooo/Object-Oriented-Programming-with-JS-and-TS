@@ -503,51 +503,106 @@
 // const myCircle = new Circle('blue', 10);
 // console.log(myCircle.describe()); // Should output: "A blue shape"
 
-class Person {
+// class Person {
 
-  private _firstName: string;
-  private _lastName: string;
+//   private _firstName: string;
+//   private _lastName: string;
 
-  constructor(firstName: string, lastName: string) {
-    this._firstName = firstName;
-    this._lastName = lastName;
+//   constructor(firstName: string, lastName: string) {
+//     this._firstName = firstName;
+//     this._lastName = lastName;
+//   }
+  
+//   // Getter for fullName
+//   get fullName() {
+//     return `${this._firstName} ${this._lastName}`;
+//   }
+  
+//   // Setter for fullName
+//   set fullName(value) {
+//     const parts = value.split(' ');
+//     this._firstName = parts[0];
+//     this._lastName = parts[1];
+//   }
+// }
+
+// const myPerson: Person = new Person("Bob", "Marley");
+
+// // Using the 'Get' Method:
+// console.log(myPerson.fullName) // "Bob Marley"
+
+// // Using the 'Set' Method:
+// myPerson.fullName = "John Smith";
+// console.log(myPerson.fullName) // "John Smith"
+
+// export class User {
+
+//   public name: string;
+//   private _age: number;
+
+//   constructor(name: string, age: number) {
+//     this.name = name;
+//     this._age = age;  // Store age privately
+//   }
+  
+//   get age() { return this._age; }
+//   set age(newAge) {
+//     if (0 <= newAge && newAge <= 120) this._age = newAge;
+//     else console.log("Invalid age!");
+//   }
+// }
+
+class User {
+  public _name: string;
+  public _age: number;
+
+  constructor(name: string, age: number) {
+    this._name = name;
+    this._age = age;
   }
   
-  // Getter for fullName
-  get fullName() {
-    return `${this._firstName} ${this._lastName}`;
+  get age(): number {
+    return this._age;
   }
   
-  // Setter for fullName
-  set fullName(value) {
-    const parts = value.split(' ');
-    this._firstName = parts[0];
-    this._lastName = parts[1];
+  // Set methods don't require return values!
+  set age(value: number) {
+    // Validate age is a number and within reasonable range
+    if (typeof value !== 'number') {
+      throw new Error('Age must be a number');
+    }
+    
+    if (value < 0 || value > 120) {
+      throw new Error('Age must be between 0 and 120');
+    }
+    
+    this._age = value;
+    
+    // Side effect: log when age changes
+    console.log(`Age updated to ${value}`);
   }
 }
 
-const myPerson: Person = new Person("Bob", "Marley");
+export class BankAccount {
+  public _balance: number;
+  public _accountName: string;
 
-// Using the 'Get' Method:
-console.log(myPerson.fullName) // "Bob Marley"
-
-// Using the 'Set' Method:
-myPerson.fullName = "John Smith";
-console.log(myPerson.fullName) // "John Smith"
-
-export class User {
-
-  public name: string;
-  private _age: number;
-
-  constructor(name: string, age: number) {
-    this.name = name;
-    this._age = age;  // Store age privately
+  constructor(accountName: string) {
+    this._balance = 0;
+    this._accountName = accountName;
   }
   
-  get age() { return this._age; }
-  set age(newAge) {
-    if (0 <= newAge && newAge <= 120) this._age = newAge;
-    else console.log("Invalid age!");
+  get balance(): number {
+    return this._balance;
+  }
+  
+  set balance(value: number) {
+    if (typeof value !== "number" || value < 0) {
+      console.log("Invalid balance");
+      return;
+    }
+    
+    this._balance = value;
+    console.log(`Balance updated to $${value}`);
   }
 }
