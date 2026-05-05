@@ -3895,3 +3895,111 @@ Computer starting up...
 Processing at 3.5 GHz
 Loading 16 GB of data
 ```
+
+### The Limits of Deep Inheritance:
+
+While inheritance is useful, creating a very deep inheritance hierarchies (parent -> child -> grandchild -> great-grandchild...) can lead to problems such as performance loss. The deeper the chain, the harder it becomes to understand, maintain and modify the code.
+
+#### Example of Deep Nested Inheritance Chain:
+
+```js
+// Base class
+class Vehicle {
+  constructor(type) {
+    this.type = type;
+    this.isRunning = false;
+  }
+  
+  start() {
+    this.isRunning = true;
+    console.log(`${this.type} started`);
+  }
+}
+
+// First level of inheritance
+class Car extends Vehicle {
+  constructor(make, model) {
+    super("Car");
+    this.make = make;
+    this.model = model;
+    this.wheels = 4;
+  }
+  
+  honk() {
+    console.log("Beep beep!");
+  }
+}
+
+// Second level of inheritance
+class SportsCar extends Car {
+  constructor(make, model, topSpeed) {
+    super(make, model);
+    this.topSpeed = topSpeed;
+  }
+  
+  race() {
+    this.start();
+    console.log(`Racing at ${this.topSpeed} mph!`);
+  }
+}
+```
+
+In this example, `SportsCar` is two levels deep in inheritance, which can lead to the following problems:
+
+1. Changes to `Vehicle` might unexpectedly break `SportsCar`.
+2. As the inheritance chain grows, it becomes harder to track where methods and properties come from.
+3. You're forced into "is-a" relationship that might not be flexible enough.
+
+#### Example of Composition (Recommended Approach for "has-a" case):
+
+Robot.js:
+
+```js
+class Speaker {
+  speak(message) {
+    console.log(`Saying: "${message}"`);
+  }
+}
+
+class Mover {
+  move(direction) {
+    console.log(`Moving ${direction}`);
+  }
+}
+
+export class Robot {
+  constructor(name) {
+    this.name = name;
+    
+    this.speaker = new Speaker();
+    this.mover = new Mover();
+  }
+  
+  greet() {
+    this.speaker.speak("Hello!");
+  }
+  
+  walkForward() {
+    this.mover.move("forward");
+  }
+}
+```
+
+main.js:
+
+```js
+import { Robot } from './Robot.js';
+
+const myRobot = new Robot('Robo');
+
+myRobot.greet();     // Should output: Saying: "Hello!"
+myRobot.walkForward(); // Should output: Moving forward
+```
+
+##### Result:
+
+```
+Saying: "Hello!"
+Moving forward
+```
+
