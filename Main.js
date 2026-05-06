@@ -160,34 +160,350 @@
 //   };
 // }
 // const encapsulatedUser = createUser("John", "john@example.com");
-// var User = /** @class */ (function () {
-//     function User(userName, userEmail) {
-//         this.userName = userName;
-//         this.userEmail = userEmail;
-//     }
-//     ;
-//     User.prototype.getName = function () { return this.userName; };
-//     User.prototype.getEmail = function () { return this.userEmail; };
-//     User.prototype.setName = function (newName) { this.userName = newName; };
-//     return User;
-// }());
-// ;
-// var myUser = new User("Brad", "BigBrad@example.com");
-// console.log(myUser.getName()); // "Brad"
+// class User {
+//   private userName: string;
+//   private userEmail: string;
+//   constructor(userName: string, userEmail: string) {
+//     this.userName = userName;
+//     this.userEmail = userEmail;
+//   };
+//   getName(): string { return this.userName; }
+//   getEmail(): string { return this.userEmail; }
+//   setName(newName: string): void { this.userName = newName; }
+// };
+// const myUser: User = new User("Brad", "BigBrad@example.com");
+// console.log(myUser.getName());  // "Brad"
 // console.log(myUser.getEmail()); // "BigBrad@example.com"
-
+// class Student {
+//   public name: string;
+//   private grade: number;
+//   constructor(name: string, grade: number) {
+//     this.name = name;
+//     this.grade = grade;
+//   }
+//   getGrade(): number {
+//     return this.grade;
+//   }
+//   updateGrade(newGrade: number): void {
+//     this.grade = newGrade;
+//   }
+// }
+// class Counter {
+//   private count: number = 0;
+//   // Create a private method
+//   private increment(): void {
+//     this.count++;
+//   }
+//   // Public method that uses the private method
+//   addOne(): number {
+//     this.increment();
+//     return this.count;
+//   }
+// }
+// const myCounter = new Counter();
+// console.log(myCounter.addOne());
+// export class MessageBox {
+//   private message: string = "";
+//   setMessage(text: string): string {
+//     if (this.isValidMessage(text)) {
+//       this.message = text;
+//       return "Message set!";
+//     }
+//     return "Invalid message!";
+//   }
+//   getMessage(): string {
+//     return this.message;
+//   }
+//   // Add a private method called #isValidMessage(text)
+//   private isValidMessage(text: string): boolean {
+//     if (text.length === 0 || text.length >= 100) return false;
+//     // Make it return true if the text is not empty and less than 100 characters, otherwise return false
+//     return true;
+//   }
+// }
+// class Vehicle {
+//   public brand: string;
+//   public model: string;
+//   constructor(brand: string, model: string) {
+//     this.brand = brand;
+//     this.model = model;
+//   }
+//   drive(): void {
+//     console.log("Driving!");
+//   }
+// }
+// // Car inherits from Vehicle
+// class Car extends Vehicle {
+//  honk(): void {
+//    console.log("Beep beep!");
+//  }
+// }
+// const myCar = new Car("Toyota", "Camry");
+// console.log(myCar.brand);  // "Toyota" - inherited from Vehicle
+// console.log(myCar.model);  // "Camry" - inherited from Vehicle
+// // Car can access Vehicle's methods
+// myCar.drive();  // "Driving!" - inherited from Vehicle
+// // Car also has its own methods
+// myCar.honk();   // "Beep beep!" - specific to Car
+// class Animal {
+//   public name: string;
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+//   speak(): string {
+//     return `${this.name} makes a noise.`;
+//   }
+// }
+// class Dog extends Animal {
+//   // The Dog class inherits from Animal
+// }
+// Parent class:
+// class Employee {
+//   public name: string;
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+// }
+// // Child class:
+// class Manager extends Employee {
+//   public department: string;
+//   constructor(name: string, department: string) {
+//     super(name); // Call the parent constructor with name
+//     this.department = department;
+//   }
+// }
+// // Create instances of the child class:
+// const myManager = new Manager("Sarah", "Engineering");
+// console.log(myManager.name);      // "Sarah"
+// console.log(myManager.department); // "Engineering"
+// class Animal {
+//   public name: string;
+//   public age: number;
+//   constructor(name: string, age: number) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   eat(): string {
+//     return `${this.name} is eating`;
+//   }
+//   sleep(): string {
+//     return `${this.name} is sleeping`;
+//   }
+// }
+// class Dog extends Animal {
+//   public breed: string;
+//   constructor(name: string, age: number, breed: string) {
+//     super(name, age);
+//     this.breed = breed;
+//   }
+// }
+// export class Calculator {
+//   public value: number;
+//   constructor(initialValue: number) {
+//     this.value = initialValue;
+//   }
+//   add(number: number): number {
+//     this.value += number;
+//     return this.value;
+//   }
+//   static multiply(num1: number, num2: number): number {
+//     return num1 * num2;
+//   // Do NOT use this (static methods don't have instance data)
+//   }
+// }
+// class Counter {
+//   // Define a static property
+//   static count = 0;
+//   constructor() {
+//     // Increment the static count each time a new instance is created
+//     Counter.count++;
+//   }
+// }
+// class Animal {
+//   public name: string;
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+//   speak(): string {
+//     return `${this.name} makes a sound`;
+//   }
+// }
+// class Dog extends Animal {
+//   speak(): string {
+//     return `${this.name} barks`;
+//   }
+// }
+// class Cat extends Animal {
+//   speak(): string {
+//     return `${this.name} meows`;
+//   }
+// }
+// const animal = new Animal("Some animal");
+// const dog = new Dog("Rex");
+// const cat = new Cat("Whiskers");
+// const listOfObjects: Animal[] = [animal, dog, cat];
+// for (let entity of listOfObjects) {
+//   console.log(entity.speak());
+// };
+// class Vehicle {
+//   start(): string {
+//     return "Vehicle starting...";
+//   }
+// }
+// // Child class that extends the parent:
+// class Car extends Vehicle {
+//   // This OVERRIDES Vehicle's start() method
+//   start(): string {
+//     return "Car engine roaring to life!";
+//   }
+// }
+// const vehicle = new Vehicle();
+// const car = new Car();
+// console.log(vehicle.start());      // "Vehicle starting..." (original)
+// console.log(car.start());          // "Car engine roaring to life!" (overridden)
+// // Parent class:
+// class Animal {
+//   makeSound(): string {
+//     return "Generic animal sound";
+//   }
+// }
+// // Child class:
+// class Dog extends Animal {
+//   makeSound(): string {
+//     // Call the parent's method first
+//     const parentSound = super.makeSound();
+//     // Then extend with additional functionality
+//     return `${parentSound}, but also Woof!`;
+//   }
+// }
+// // Initialize an instance of the child class:
+// const myDog = new Dog();
+// console.log(myDog.makeSound());
+// // Output: "Generic animal sound, but also Woof!"
+// class Shape {
+//   calculateArea(): string {
+//     return "Calculating area...";
+//   }
+// }
+// class Rectangle extends Shape {
+//   public width: number;
+//   public height: number;
+//   constructor(width: number, height: number) {
+//     super();
+//     this.width = width;
+//     this.height = height;
+//   }
+//   // Override this method using super
+//   calculateArea() {
+//     // Call the parent's calculateArea() method using super and store the result
+//     const process: string = super.calculateArea();
+//     const rectangleArea: number = this.width * this.height;
+//     return `${process} Rectangle area: ${rectangleArea}`;
+//   }
+// }
+// import { Shape } from "./Projects/Shape_Renderer/Shape.ts";
+// import { Circle } from "./Projects/Shape_Renderer/Circle.ts";
+// // Tests
+// const basicShape = new Shape('red');
+// console.log(basicShape.describe()); // "A red shape"
+// const myCircle = new Circle('blue', 10);
+// console.log(myCircle.describe()); // Should output: "A blue shape"
+// class Person {
+//   private _firstName: string;
+//   private _lastName: string;
+//   constructor(firstName: string, lastName: string) {
+//     this._firstName = firstName;
+//     this._lastName = lastName;
+//   }
+//   // Getter for fullName
+//   get fullName() {
+//     return `${this._firstName} ${this._lastName}`;
+//   }
+//   // Setter for fullName
+//   set fullName(value) {
+//     const parts = value.split(' ');
+//     this._firstName = parts[0];
+//     this._lastName = parts[1];
+//   }
+// }
+// const myPerson: Person = new Person("Bob", "Marley");
+// // Using the 'Get' Method:
+// console.log(myPerson.fullName) // "Bob Marley"
+// // Using the 'Set' Method:
+// myPerson.fullName = "John Smith";
+// console.log(myPerson.fullName) // "John Smith"
 // export class User {
-//   name = "";
-//   #age = 0;
-
-//   constructor(name, age) {
+//   public name: string;
+//   private _age: number;
+//   constructor(name: string, age: number) {
 //     this.name = name;
 //     this._age = age;  // Store age privately
 //   }
-  
 //   get age() { return this._age; }
 //   set age(newAge) {
 //     if (0 <= newAge && newAge <= 120) this._age = newAge;
 //     else console.log("Invalid age!");
 //   }
 // }
+// class User {
+//   public _name: string;
+//   public _age: number;
+//   constructor(name: string, age: number) {
+//     this._name = name;
+//     this._age = age;
+//   }
+//   get age(): number {
+//     return this._age;
+//   }
+//   // Set methods don't require return values!
+//   set age(value: number) {
+//     // Validate age is a number and within reasonable range
+//     if (typeof value !== 'number') {
+//       throw new Error('Age must be a number');
+//     }
+//     if (value < 0 || value > 120) {
+//       throw new Error('Age must be between 0 and 120');
+//     }
+//     this._age = value;
+//     // Side effect: log when age changes
+//     console.log(`Age updated to ${value}`);
+//   }
+// }
+// export class BankAccount {
+//   public _balance: number;
+//   public _accountName: string;
+//   constructor(accountName: string) {
+//     this._balance = 0;
+//     this._accountName = accountName;
+//   }
+//   get balance(): number {
+//     return this._balance;
+//   }
+//   set balance(value: number) {
+//     if (typeof value !== "number" || value < 0) {
+//       console.log("Invalid balance");
+//       return;
+//     }
+//     this._balance = value;
+//     console.log(`Balance updated to $${value}`);
+//   }
+// }
+var Engine = /** @class */ (function () {
+    function Engine() {
+    }
+    Engine.prototype.start = function () {
+        console.log("Engine started");
+    };
+    return Engine;
+}());
+// Car "has-a" Engine - composition relationship
+var Car = /** @class */ (function () {
+    function Car() {
+        this.engine = new Engine(); // Composition
+    }
+    Car.prototype.startCar = function () {
+        this.engine.start();
+        console.log("Car is running");
+    };
+    return Car;
+}());
